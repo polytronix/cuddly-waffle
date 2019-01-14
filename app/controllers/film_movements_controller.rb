@@ -1,5 +1,5 @@
 class FilmMovementsController < ApplicationController
-  before_filter :set_default_start_date
+  before_action :set_default_start_date
 
   def index
     @film_movements = film_movements.sort_by_created_at.page(params[:page])

@@ -16,11 +16,11 @@ class Tenant
 
   def initialize(code)
     @code = code
-    @name = PROPERTIES[code][:name]
-    @time_zone = PROPERTIES[code][:time_zone]
-    @area_divisor = PROPERTIES[code][:area_divisor]
-    @small_area_cutoff = PROPERTIES[code][:small_area_cutoff]
-    @yield_multiplier = PROPERTIES[code][:yield_multiplier]
+    @name = PROPERTIES["pi"][:name]
+    @time_zone = PROPERTIES["pi"][:time_zone]
+    @area_divisor = PROPERTIES["pi"][:area_divisor]
+    @small_area_cutoff = PROPERTIES["pi"][:small_area_cutoff]
+    @yield_multiplier = PROPERTIES["pi"][:yield_multiplier]
   end
 
   def self.asset_classes

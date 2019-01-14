@@ -1,4 +1,4 @@
-class AddWepColumnsToMasterFilms < ActiveRecord::Migration
+class AddWepColumnsToMasterFilms < ActiveRecord::Migration[5.1]
   def change
     add_column :master_films, :wep_uv_on, :decimal
     add_column :master_films, :wep_visible_on, :decimal

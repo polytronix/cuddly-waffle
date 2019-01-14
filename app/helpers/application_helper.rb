@@ -16,6 +16,7 @@ module ApplicationHelper
       content_tag(:i, nil, class: "fa fa-plus") + name
     end
   end
+  
 
   def link_to_add_hstore_fields(label = "", fields_partial)
     fields = render(fields_partial).gsub("\n", "")

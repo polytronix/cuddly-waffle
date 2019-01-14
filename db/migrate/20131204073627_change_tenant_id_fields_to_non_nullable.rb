@@ -1,4 +1,4 @@
-class ChangeTenantIdFieldsToNonNullable < ActiveRecord::Migration
+class ChangeTenantIdFieldsToNonNullable < ActiveRecord::Migration[5.1]
   def change
     change_column :films, :tenant_id, :integer, null: false
     change_column :machines, :tenant_id, :integer, null: false

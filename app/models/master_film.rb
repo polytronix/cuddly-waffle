@@ -1,7 +1,6 @@
 class MasterFilm < ActiveRecord::Base
   include Filterable
   include Tenancy
-
     DEFECT_TYPES = ['Air Bubble', 'BBL', 'Bend', 'Blocker Mark', 'Blotchy', 'Brown Line', 'BWS', 'Clear Area', 'Clear Edges', 'Clear Peak', 'Clear Spot', 'Clear Wavy Area', 'Dent', 'Dimball', 'Dimples', 'Dropper Mark', 'Delamination', 'Dust/Dirt/FOD', 'Edge Delam', 'Foamy Streak', 'Glue Impression', 'Knot', 'Material Traces', 'MD Line', 'Non-Uniform', 'Pickle', 'Peak', 'Repeating Defect', 'ROM', 'Scratch', 'Short', 'Small Clear', 'Spacer Cluster', 'Spacer Spot', 'Streak', 'Thick Spot', 'Thick Material', 'Transverse Line', 'Wavy', 'White Spot']
 
   enum function: [ :production, :test, :transfer ]
@@ -111,12 +110,12 @@ class MasterFilm < ActiveRecord::Base
   end
 
   private
-
   def set_serial_date
     year = serial[0].ord + 1943
     month = serial[1,2].to_i
     day = serial[3,2].to_i
-    self.serial_date = Date.new(year, month, day)
+    # Date.new(year, month, day)
+    self.serial_date = Date.today
   rescue ArgumentError, NoMethodError
     self.errors[:serial] = "does not correspond to a valid date"
   end

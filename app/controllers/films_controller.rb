@@ -1,8 +1,8 @@
 class FilmsController < ApplicationController
   require 'rqrcode'
 
-  def index
-    @films = filtered_films.order_by(sort[0], sort[1]).page(params[:page])
+    def index
+    @films  = Kaminari.paginate_array(filtered_films).page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.csv { render csv: filtered_films }
@@ -70,6 +70,7 @@ class FilmsController < ApplicationController
     @film.update_attributes(deleted: false)
   end
 
+
   private
 
   def tenant_films
@@ -77,12 +78,13 @@ class FilmsController < ApplicationController
   end
   helper_method :tenant_films
 
-  def filtered_films
-    @filtered_films ||= tenant_films.join_dimensions
-                                    .phase(params[:phase], current_tenant)
-                                    .filter(filtering_params)
+   def filtered_films
+    @filtered_films ||= tenant_films.phase(params[:phase], current_tenant)
   end
   helper_method :filtered_films
+
+
+
 
   def dimensions_searched?
     params[:width_greater_than].present? || params[:length_greater_than].present?

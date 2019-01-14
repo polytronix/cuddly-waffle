@@ -4,8 +4,8 @@
   <%= link_to_export("Films", params) %>
 
   <%= render 'shared/sort_dropdown', current: sort, choices: [['serial','desc'], ['area','asc'], ['shelf','asc']] %>
-
-  <%= paginate @films %>
+  
+<%= paginate @films , outer_window: 3%>
 
   <table class="table table-condensed table-hover">
     <thead>

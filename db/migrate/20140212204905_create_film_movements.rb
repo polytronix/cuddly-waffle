@@ -1,4 +1,4 @@
-class CreateFilmMovements < ActiveRecord::Migration
+class CreateFilmMovements < ActiveRecord::Migration[5.1]
   def up
     create_table :film_movements do |t|
       t.string :from_phase, null: false

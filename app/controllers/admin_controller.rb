@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :check_admin
+  before_action :check_admin
 
   layout 'admin'
 end

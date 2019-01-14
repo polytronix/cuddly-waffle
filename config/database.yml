@@ -1,9 +1,9 @@
 development:
   adapter: postgresql
   database: pcms_development
-  host: localhost
+  host: ''
 
 test:
   adapter: postgresql
   database: pcms_test
-  host: localhost
+  host: ''

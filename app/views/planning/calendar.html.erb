@@ -1,10 +1,12 @@
 <%= month_calendar events: @calendar_days, title: calendar_title, header: calendar_header, previous_link: calendar_previous_link, next_link: calendar_next_link, table: calendar_table, td: calendar_td do |date, calendar_days| %>
+
   <%= date.day %>
   <% if !calendar_days.empty? %>
     <% calendar_day = calendar_days.first %>
     <div class="panel panel-default">
       <ul class="list-group">
         <% calendar_day.orders_due.each do |order| %>
+
           <li class="calendar-item list-group-item list-group-item-warning" data-toggle="popover" data-content="<%= "<dl class='dl-horizontal'><dt>Reserved</dt><dd>#{order.assigned_film_count("stock")}</dd><dt>WIP</dt><dd>#{order.assigned_film_count("wip")}</dd><dt>FG</dt><dd>#{order.assigned_film_count("fg")}</dd></dl>" %>" data-trigger="hover" data-html="true">
           <%= order.code %>
           <% if order.shipped? %>

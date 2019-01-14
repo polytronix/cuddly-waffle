@@ -1,4 +1,4 @@
-class AddWipColumnsToFilms < ActiveRecord::Migration
+class AddWipColumnsToFilms < ActiveRecord::Migration[5.1]
   def change
     add_column :films, :customer, :string
     add_column :films, :sales_order_code, :string

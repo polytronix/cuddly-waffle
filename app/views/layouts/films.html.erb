@@ -1,3 +1,4 @@
+
 <% provide :title, "Films" %>
 
 <% content_for :nav_list do %>
@@ -28,17 +29,19 @@
   <%= render 'search_form' %>
 <% end %>
 
+
 <% content_for :summary do %>
   <dl class="dl-horizontal pull-right">
     <dt>Pieces</dt>
     <dd><%= filtered_films.count(:all) %></dd>
-    <dt>Area</dt>
-    <dd><%= format_area(filtered_films.total_area) %></dd>
   </dl>
 <% end %>
 
 <% content_for :nav do %>
+
+
   <ul class="nav nav-tabs">
+
     <%= tab_link_to("Index", 'index') %>
     <%= tab_link_to("Formula totals", 'formula_totals') %>
     <%= tab_link_to("Dimensions map", 'dimensions_map') %>

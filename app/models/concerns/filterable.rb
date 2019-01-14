@@ -5,7 +5,7 @@ module Filterable
 
   module ClassMethods
     def filter(params)
-      params.reduce(self.all) { |filtered, (k, v)| v.present? ? filtered.public_send(k, v) : filtered }
+      self.all { |filtered, (k, v)| v.present? ? filtered.public_send(k, v) : filtered }
     end
   end
 end

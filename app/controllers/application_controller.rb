@@ -52,7 +52,8 @@ private
   end
 
   def any_searches?
-    filtering_params.any? { |k,v| v.present? }
+    filtering_params
+    # .any? { |k,v| v.present? }
   end
   helper_method :any_searches?
 

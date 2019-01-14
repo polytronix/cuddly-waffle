@@ -1,4 +1,4 @@
-class CreateDefects < ActiveRecord::Migration
+class CreateDefects < ActiveRecord::Migration[5.1]
   def change
     create_table :defects do |t|
       t.string :defect_type

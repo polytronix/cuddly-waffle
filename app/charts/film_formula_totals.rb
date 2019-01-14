@@ -19,7 +19,6 @@ class FilmFormulaTotals
   private
   
   def unique_values
-    # didn't use pluck because of pg_search bug
     @films.map(&:formula).uniq
   end
 

@@ -4,7 +4,7 @@ class BvalueSeries
   end
 
   def data
-    @master_films.reorder('master_films.serial ASC').map do |mf|
+    @master_films.map do |mf|
       [mf.serial, mf.b_value.to_f]
     end
   end

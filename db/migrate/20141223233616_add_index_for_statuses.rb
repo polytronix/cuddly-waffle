@@ -1,4 +1,4 @@
-class AddIndexForStatuses < ActiveRecord::Migration
+class AddIndexForStatuses < ActiveRecord::Migration[5.1]
   def change
     add_index :films, :phase
     add_index :sales_orders, :status

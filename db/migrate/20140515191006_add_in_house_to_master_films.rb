@@ -1,4 +1,4 @@
-class AddInHouseToMasterFilms < ActiveRecord::Migration
+class AddInHouseToMasterFilms < ActiveRecord::Migration[5.1]
   def up
     add_column :master_films, :in_house, :boolean, default: true
     MasterFilm.where("length(serial) > 8").update_all(in_house: false)

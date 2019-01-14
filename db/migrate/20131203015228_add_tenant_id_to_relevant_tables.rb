@@ -1,4 +1,4 @@
-class AddTenantIdToRelevantTables < ActiveRecord::Migration
+class AddTenantIdToRelevantTables < ActiveRecord::Migration[5.1]
   def change
     add_column :films, :tenant_id, :integer
     add_column :machines, :tenant_id, :integer

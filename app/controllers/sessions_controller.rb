@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:login][:username])
-    if user && user.authenticate(params[:login][:password])
+    user_password = User.find_by(password_digest: params[:login][:password])
+    if user && user_password
       session[:user_id] = user.id
       redirect_to session.delete(:forward_to) || root_path
     else

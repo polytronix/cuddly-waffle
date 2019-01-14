@@ -1,6 +1,6 @@
 class Admin::MachinesController < AdminController
   def index
-    @machines = machines.page(params[:page])
+    @machines = machines.page(params[:page]).per(10)
   end
 
   def new

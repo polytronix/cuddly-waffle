@@ -1,4 +1,4 @@
-class AddDefectsToMasterFilms < ActiveRecord::Migration
+class AddDefectsToMasterFilms < ActiveRecord::Migration[5.1]
   def up
     add_column :master_films, :defects, :hstore, default: '', null: false
   end

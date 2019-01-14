@@ -1,8 +1,7 @@
 class CalendarDay
   extend SimpleCalendar
-  has_calendar
-
-  attr_accessor :starts_at
+  
+  attr_accessor :starts_time
 
   def initialize(starts_at, orders)
     @starts_at = starts_at
@@ -16,7 +15,7 @@ class CalendarDay
   end
 
   def orders_due
-    @orders.due_date_equals(starts_at)
+    @orders.due_date_equals(@starts_at)
   end
 
   def progress_count

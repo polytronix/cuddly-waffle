@@ -10,8 +10,8 @@ class SalesOrder < ActiveRecord::Base
   accepts_nested_attributes_for :line_items, allow_destroy: true
   
   validates :code, presence: true, 
-                   uniqueness: { case_sensitive: false, 
-                                 scope: :tenant_code }
+                    uniqueness: { case_sensitive: false, 
+                                  scope: :tenant_code }
   validates :ship_date, presence: true, if: Proc.new { |o| o.shipped? }
   validate :ship_date_after_release?
   validates :release_date, presence: true

@@ -1,6 +1,6 @@
 class SolderSeries
   def initialize(records)
-    @films = records
+   @films = records  
   end
 
   def data
@@ -49,6 +49,6 @@ class SolderSeries
   end
 
   def ordered_films
-    @ordered_films ||= @films.reorder('films.serial ASC')
+    @ordered_films ||= @films
   end
 end

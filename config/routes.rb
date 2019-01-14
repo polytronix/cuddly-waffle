@@ -13,7 +13,6 @@ Pcms::Application.routes.draw do
 
   get '/amo', to: redirect('/amo/job_dates')
 
-
   resources :films, except: [:new, :create] do
     member do
       post :split
@@ -52,8 +51,9 @@ Pcms::Application.routes.draw do
       get :wep_series
     end
   end
-
-  resources :sales_orders, except: [:show] do
+  get 'duplicate_update', to: 'sales_orders#duplicate_update'
+  resources :sales_orders do
+     
     member do
       get :edit_ship_date
       patch :update_ship_date

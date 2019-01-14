@@ -1,4 +1,4 @@
-class CreateAvionicsJobOrder < ActiveRecord::Migration
+class CreateAvionicsJobOrder < ActiveRecord::Migration[5.1]
   def change
     create_table :avionics_job_orders do |t|
       t.string :serial, null: false, default: ""

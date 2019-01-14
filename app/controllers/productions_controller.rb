@@ -1,8 +1,8 @@
 class ProductionsController < ApplicationController
-  before_filter :set_default_start_date
+  before_action :set_default_start_date
 
   def index
-    @productions = Kaminari.paginate_array(grouped_productions.reverse).page(params[:page])
+     @productions = grouped_productions
   end
 
   def yield_time_series
@@ -20,11 +20,11 @@ class ProductionsController < ApplicationController
   private
   
   def grouped_productions
-    TimeSeriesGrouper.new(filtered_production_master_films, 'serial_date').send(params[:grouping])
+    TimeSeriesGrouper.new(filtered_production_master_films, 'serial_date')
   end
 
   def filtered_production_master_films
-    current_tenant.master_films.active.production.filter(filtering_params)
+    current_tenant.master_films.active
   end
 
   def set_default_start_date

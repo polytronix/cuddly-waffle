@@ -1,4 +1,4 @@
-class AddPhaseToFilms < ActiveRecord::Migration
+class AddPhaseToFilms < ActiveRecord::Migration[5.1]
   def up
     rename_column :films, :phase, :old_phase
     add_column :films, :phase, :integer, default: 0, null: false

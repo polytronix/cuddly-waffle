@@ -12,7 +12,8 @@ class MasterFilmsController < ApplicationController
   end
 
   def index
-    @master_films = filtered_master_films.page(params[:page])
+  
+    @master_films = Kaminari.paginate_array(filtered_master_films).page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.csv { render csv: filtered_master_films }
@@ -24,13 +25,24 @@ class MasterFilmsController < ApplicationController
   end
 
   def bvalue_series
-    filtered_master_films_with_bvalue = filtered_master_films.where.not(b_value: nil)
-    @series = BvalueSeries.new(filtered_master_films_with_bvalue)
+    @filtered_master_films_with_bvalue = Array.new(0) 
+    filtered_master_films.each do|filtered_master_film|
+      if filtered_master_film.b_value !=nil
+        @filtered_master_films_with_bvalue.push(filtered_master_film)
+      end
+    end
+    @series = BvalueSeries.new(@filtered_master_films_with_bvalue)
   end
 
   def wep_series
-    filtered_master_films_with_wep_values = filtered_master_films.where.not(wep_visible_on: nil, wep_ir_off: nil)
-    @series = WepSeries.new(filtered_master_films_with_wep_values)
+  
+    @filtered_master_films_with_wep_values = Array.new(0) 
+    filtered_master_films.each do|filtered_master_film| 
+      if filtered_master_film.wep_visible_on !=nil  && filtered_master_film.wep_ir_off != nil
+        @filtered_master_films_with_wep_values.push(filtered_master_film)  
+      end
+    end
+    @series = WepSeries.new(@filtered_master_films_with_wep_values)
   end
 
   def edit
@@ -48,7 +60,7 @@ class MasterFilmsController < ApplicationController
   private
 
   def filtered_master_films
-    @filtered_master_films ||= tenant_master_films.active.function(params[:function]).filter(filtering_params).by_serial
+    @filtered_master_films ||= tenant_master_films.function(params[:function]).active
   end
   helper_method :filtered_master_films
 

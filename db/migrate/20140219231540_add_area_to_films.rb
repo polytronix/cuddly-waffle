@@ -1,4 +1,4 @@
-class AddAreaToFilms < ActiveRecord::Migration
+class AddAreaToFilms < ActiveRecord::Migration[5.1]
   def up
     add_column :films, :area, :decimal, null: false, default: 0
     add_index :films, :area

@@ -1,4 +1,4 @@
-class AddSerialToFilms < ActiveRecord::Migration
+class AddSerialToFilms < ActiveRecord::Migration[5.1]
   def up
     add_column :films, :serial, :string
 

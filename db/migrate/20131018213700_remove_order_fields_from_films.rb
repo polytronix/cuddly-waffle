@@ -1,4 +1,4 @@
-class RemoveOrderFieldsFromFilms < ActiveRecord::Migration
+class RemoveOrderFieldsFromFilms < ActiveRecord::Migration[5.1]
   def change
     remove_column :films, :sales_order_code, :string
     remove_column :films, :reserved_for, :string

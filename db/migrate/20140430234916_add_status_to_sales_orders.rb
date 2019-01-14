@@ -1,4 +1,4 @@
-class AddStatusToSalesOrders < ActiveRecord::Migration
+class AddStatusToSalesOrders < ActiveRecord::Migration[5.1]
   def up
     add_column :sales_orders, :status, :integer, default: 0, null: false
     SalesOrder.where(cancelled: true).update_all(status: 2) 

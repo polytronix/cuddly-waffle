@@ -1,4 +1,4 @@
-class AddSerialDateToMasterFilms < ActiveRecord::Migration
+class AddSerialDateToMasterFilms < ActiveRecord::Migration[5.1]
   def up
     add_column :master_films, :serial_date, :date, null: false, default: Date.current
     MasterFilm.all.each do |mf| 

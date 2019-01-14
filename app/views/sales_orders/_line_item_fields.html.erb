@@ -11,9 +11,11 @@
       <%= f.number_field :quantity, placeholder: "Qty", default: true %>
     </div>
     <%= f.hidden_field :_destroy %>
+     <%= f.hidden_field :_destroy, :sale_id => f.object.id %>
     <%= link_to '#', class: "remove-fields" do %>
       <i class="fa fa-minus"></i>remove
     <% end %>
+     <%= link_to "Duplicate", duplicate_update_path(f.object.id) %>
   </div>
   <div class="col-md-10 col-md-offset-2">
     <div class="form-group">

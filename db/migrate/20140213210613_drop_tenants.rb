@@ -1,4 +1,4 @@
-class DropTenants < ActiveRecord::Migration
+class DropTenants < ActiveRecord::Migration[5.1]
   def up
     drop_table :tenants if ActiveRecord::Base.connection.tables.include?("tenants")
 

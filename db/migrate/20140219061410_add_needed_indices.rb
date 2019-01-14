@@ -1,4 +1,4 @@
-class AddNeededIndices < ActiveRecord::Migration
+class AddNeededIndices < ActiveRecord::Migration[5.1]
   def change
     add_index :dimensions, :film_id
     add_index :film_movements, :film_id
@@ -8,7 +8,7 @@ class AddNeededIndices < ActiveRecord::Migration
     add_index :films, :deleted
     add_index :films, :sales_order_id
     add_index :films, :serial
-    add_index :line_items, :sales_order_id
+    # add_index :line_items, :sales_order_id
     add_index :master_films, :serial
     add_index :master_films, :machine_id
     add_index :sales_orders, :due_date

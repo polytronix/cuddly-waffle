@@ -1,31 +1,39 @@
 source 'http://rubygems.org'
 
-ruby '2.2.3'
-gem 'rails', '4.2.1'
-gem 'sass-rails', '~> 5.0.3'
-gem 'jquery-rails', '4.0.3'
-gem 'bcrypt', '~> 3.1.10'
-gem 'uglifier', '~> 2.7.1'
-gem 'responders', '~> 2.1.0'
-gem 'bootstrap-sass', '~> 3.3.4.1'
-gem 'newrelic_rpm'
+ruby '2.5.3'
+gem 'rails', '~> 5.1.2'
+gem 'sass-rails', '~> 5.0', '>= 5.0.4'
+gem 'jquery-rails'
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
+gem 'uglifier', '~> 4.1', '>= 4.1.17'
+gem 'responders', '~> 2.4'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'newrelic_rpm', '~> 5.3', '>= 5.3.0.346'
 
-# nokogiri 1.6.2 segmentation faults when running rspec
-gem 'nokogiri', '1.6.1'
+gem 'nokogiri', '~> 1.8', '>= 1.8.4'
 
-gem 'pg', '~> 0.18.1'
-gem 'highcharts-rails', '~> 4.0.1'
+gem 'pg', '~> 1.0'
+gem 'highcharts-rails', '~> 6.0', '>= 6.0.3'
 gem 'kaminari', '~> 0.16.3'
 gem 'simple_calendar', '~> 1.1.10'
-gem 'rqrcode', '0.4.2'
-gem 'jbuilder', '~> 2.2.13'
-gem 'pg_search', '~> 0.7.9'
-gem 'bootstrap-datepicker-rails', '~> 1.4.0'
-gem "sentry-raven", git: "https://github.com/getsentry/raven-ruby.git"
+gem 'rqrcode', '~> 0.10.1'
+gem 'jbuilder', '~> 2.7'
+gem 'pg_search', '~> 2.1', '>= 2.1.2'
+gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
+gem 'sentry-raven', '~> 2.7', '>= 2.7.4'
 
-gem 'puma', '~> 3.6.0'
-gem 'rack-timeout' # used to timeout puma requests
+gem 'puma', '~> 3.12'
+
+gem 'pry'
+gem 'pry-byebug'
+#this is used for the table print of database
+gem 'table_print', '~> 1.5', '>= 1.5.6'
+gem "awesome_print", require:"ap"
+
+# gem 'rack-timeout' # used to timeout puma requests
 
 group :production do
-  gem 'rails_12factor'
+  # gem 'rails_12factor'
+  gem 'rails_12factor', '~> 0.0.3'
+  gem 'rack-timeout', '~> 0.5.1'
 end

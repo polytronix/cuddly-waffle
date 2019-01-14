@@ -26,24 +26,26 @@ class Film < ActiveRecord::Base
   validate :must_have_dimensions, on: :update
 
   scope :join_dimensions, -> { joins('LEFT OUTER JOIN dimensions ON dimensions.film_id = films.id').uniq }
-  scope :join_master_films, -> { joins('INNER JOIN master_films ON master_films.id = films.master_film_id') }
+  scope :join_master_films, ->  { joins('INNER JOIN master_films ON master_films.id = films.master_film_id') }
   scope :active, -> { where(deleted: false)
                         .join_master_films
                         .merge(MasterFilm.function_not(:test)) }
   scope :deleted, -> { where(deleted: true) }
   scope :not_deleted, -> { where(deleted: false) }
-  scope :has_shelf, -> { where("shelf <> ''") }
-  scope :large, ->(cutoff) { join_dimensions.merge(Dimension.large(cutoff)) }
-  scope :small, ->(cutoff) { join_dimensions.merge(Dimension.small(cutoff)) }
+  # scope :has_shelf, -> { where("shelf <> ''") }
+  scope :large, ->(cutoff) { join_dimensions do|dimension| dimension.merge(Dimension.large(cutoff))end  }
+  scope :small, ->(cutoff) { join_dimensions do|dimension| dimension.merge(Dimension.small(cutoff)) end }
   scope :text_search, ->(query) { reorder('').search(query) }
   scope :formula_like, ->(formula) { join_master_films
                                        .merge(MasterFilm.formula_like(formula)) }
   scope :order_by, ->(col, dir) { order("#{col} #{dir}") }
+
+
   scope :width_greater_than, ->(n) { join_dimensions.merge(Dimension.min_width(n)) }
   scope :length_greater_than, ->(n) { join_dimensions.merge(Dimension.min_length(n)) }
-  scope :serial_date_before, ->(date) { join_master_films.merge(MasterFilm.serial_date_before(date)) }
-  scope :serial_date_after, ->(date) { join_master_films.merge(MasterFilm.serial_date_after(date)) }
-
+  scope :serial_date_before, lambda {|date| join_master_films.merge(MasterFilm.serial_date_before(date)) }
+  scope :serial_date_after, lambda {|date| join_master_films.merge(MasterFilm.serial_date_after(date)) }
+  
   include PgSearch
   pg_search_scope :search,
                   against: [:serial, :note, :shelf, :phase],
@@ -88,6 +90,11 @@ class Film < ActiveRecord::Base
       when "deleted"
         deleted
     end
+  end
+
+
+  def self.has_shelf
+    where("shelf <> ''")
   end
 
   def self.total_order_fill_count

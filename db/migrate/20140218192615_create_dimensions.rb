@@ -1,4 +1,4 @@
-class CreateDimensions < ActiveRecord::Migration
+class CreateDimensions < ActiveRecord::Migration[5.1]
   SECOND_WIDTH_SQL = "substring(films.note from '([0-9]+([.][0-9]+)?)[ ]*[xX][ ]*([0-9]+([.][0-9]+)?)')::decimal"
   SECOND_LENGTH_SQL = "substring(films.note from '(?:[0-9]+(?:[.][0-9]+)?)[ ]*[xX][ ]*([0-9]+([.][0-9]+)?)')::decimal"
   def up

@@ -1,4 +1,4 @@
-class CreateAvionicsJobDate < ActiveRecord::Migration
+class CreateAvionicsJobDate < ActiveRecord::Migration[5.1]
   def change
     create_table :avionics_job_dates do |t|
       t.belongs_to :avionics_job_order, null: false, index: true, foreign_key: true

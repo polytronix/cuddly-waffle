@@ -1,4 +1,4 @@
-class FixUpMasterFilmsColumns < ActiveRecord::Migration
+class FixUpMasterFilmsColumns < ActiveRecord::Migration[5.1]
   def change
     remove_column :master_films, :in_house
     remove_column :master_films, :inactive

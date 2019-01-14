@@ -1,4 +1,4 @@
-<%= paginate @job_orders %>
+<%= Kaminari.paginate_array(@job_orders) %>
 
 <%= link_to_modal_new(new_job_order_path, "Enter job order") %>
 

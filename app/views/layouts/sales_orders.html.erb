@@ -6,6 +6,7 @@
     On Hold<span class="badge"><%= sales_orders.status('on_hold').count %></span>
   <% end %>
   <%= sidebar_link_to(:status, 'shipped') { "Shipped" } %>
+  <%= sidebar_link_to(:status1, '1year') { "1 Year Ago" } %>
   <%= sidebar_link_to(:status, 'cancelled') { "Cancelled" } %>
 <% end %>
 
@@ -16,11 +17,11 @@
 <% content_for :summary do %>
   <dl class="dl-horizontal pull-right">
     <dt>Orders</dt>
-    <dd><%= filtered_orders.count(:all) %></dd>
+    <dd><%= @sales_orders1.count(:all) %></dd>
     <dt>Quantity</dt>
-    <dd><%= filtered_orders.line_items.total_quantity %></dd>
+    <dd><%= @sales_orders1.line_items.total_quantity %></dd>
     <dt>Custom Area</dt>
-    <dd><%= format_area(filtered_orders.line_items.total_area) %></dd>
+    <dd><%= format_area(@sales_orders1.line_items.total_area) %></dd>
   </dl>
 <% end %>
 

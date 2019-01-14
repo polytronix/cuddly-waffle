@@ -1,4 +1,4 @@
-class DropUnusedComponents < ActiveRecord::Migration
+class DropUnusedComponents < ActiveRecord::Migration[5.1]
   def up
     drop_table :defects
     remove_column :film_movements, :tenant_id

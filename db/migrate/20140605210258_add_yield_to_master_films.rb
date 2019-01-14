@@ -1,4 +1,4 @@
-class AddYieldToMasterFilms < ActiveRecord::Migration
+class AddYieldToMasterFilms < ActiveRecord::Migration[5.1]
   def up
     add_column :master_films, :yield, :decimal
     MasterFilm.all.each do |mf|

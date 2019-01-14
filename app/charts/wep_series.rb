@@ -4,7 +4,7 @@ class WepSeries
   end
 
   def data
-    @master_films.reorder('master_films.serial ASC').map do |mf|
+    @master_films.map do |mf|
       [mf.serial, mf.wep_visible_on.to_f, mf.wep_ir_off.to_f]
     end
   end

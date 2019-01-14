@@ -1,4 +1,4 @@
-class CreatePhaseSnapshots < ActiveRecord::Migration
+class CreatePhaseSnapshots < ActiveRecord::Migration[5.1]
   def change
     create_table :phase_snapshots do |t|
       t.string :phase

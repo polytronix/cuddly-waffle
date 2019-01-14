@@ -1,8 +1,19 @@
 class SalesOrdersController < ApplicationController
-  before_filter :check_admin, only: [:destroy]
+  before_action :check_admin, only: [:destroy]
+  require 'csv'
 
   def index
     @sales_orders = filtered_orders.order_by(sort[0], sort[1]).page(params[:page])
+    @sales_orders1 = filtered_orders.order_by(sort[0], sort[1])
+    if params[:status]=='shipped'
+     @sales_orders=filtered_orders.where(['ship_date < ? AND ship_date > ?', Date.today,Date.today - 1.year]).page(params[:page])
+     @sales_orders1 =  filtered_orders.where(['ship_date < ? AND ship_date > ?', Date.today,Date.today - 1.year])
+    end
+    if params[:status1] == '1year'
+      params['status'] = 'shipped'
+       @sales_orders = filtered_orders.where(['ship_date < ?', Date.today - 1.year]).page(params[:page])
+       @sales_orders1 = filtered_orders.where(['ship_date < ?', Date.today - 1.year])
+    end
     respond_to do |format|
       format.html
       format.csv do 
@@ -49,7 +60,14 @@ class SalesOrdersController < ApplicationController
       render :display_modal_error_messages, locals: { object: @sales_order }
     end
   end
-
+  
+   def duplicate_update
+    new_line_item = LineItem.find_by_id(params[:format])
+    sales_order = SalesOrder.find(new_line_item.sales_order_id)
+    if new_line_item.dup.save!
+      redirect_back(fallback_location: root_path, flash: {notice: "Successfully LineItems is added"})
+    end
+  end
   def move
     @sales_order = sales_orders.find(params[:id])
     @sales_order.status = params[:destination]
@@ -75,7 +93,8 @@ class SalesOrdersController < ApplicationController
       render :display_modal_error_messages, locals: { object: @sales_order }
     end
   end
-
+ 
+ 
   private
 
   def filtered_orders

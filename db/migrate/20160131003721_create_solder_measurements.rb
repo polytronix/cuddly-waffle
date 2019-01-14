@@ -1,4 +1,4 @@
-class CreateSolderMeasurements < ActiveRecord::Migration
+class CreateSolderMeasurements < ActiveRecord::Migration[5.1]
   def change
     create_table :solder_measurements do |t|
       t.decimal :height1, default: 0.0, null: false

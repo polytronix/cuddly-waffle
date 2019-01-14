@@ -1,4 +1,4 @@
-class RenameAvionicsToAmo < ActiveRecord::Migration
+class RenameAvionicsToAmo < ActiveRecord::Migration[5.1]
   def change
     rename_table :avionics_job_orders, :job_orders
     rename_table :avionics_job_dates, :job_dates

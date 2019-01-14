@@ -1,4 +1,4 @@
-class ChangeColumnsToRequired < ActiveRecord::Migration
+class ChangeColumnsToRequired < ActiveRecord::Migration[5.1]
   def change
     change_column :defects, :defect_type, :string, :null => false
     change_column :defects, :count, :integer, :null => false
