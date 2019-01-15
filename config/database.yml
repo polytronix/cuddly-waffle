@@ -2,6 +2,12 @@ development:
   adapter: postgresql
   database: pcms_development
   host: ''
+production:
+  adapter: postgresql
+  database: pcms_development
+  host: ''
+  username: 'root'
+  password: 'password'
 
 test:
   adapter: postgresql
