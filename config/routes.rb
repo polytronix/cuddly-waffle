@@ -13,10 +13,11 @@ Pcms::Application.routes.draw do
 
   get '/amo', to: redirect('/amo/job_dates')
 
-  resources :films, except: [:new, :create] do
+  resources :films, except: [:new, :create ] do
     member do
       post :split
       patch :restore
+      get :delete_data
     end
     collection do
       get :edit_multiple

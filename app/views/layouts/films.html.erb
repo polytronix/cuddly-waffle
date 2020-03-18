@@ -18,11 +18,6 @@
     NC<span class="badge"><%= tenant_films.phase('nc').count %></span>
   <% end %>
   <%= sidebar_link_to(:phase, 'scrap') { "Scrap" } %>
-  <% if current_user.admin? %>
-    <%= sidebar_link_to(:phase, 'deleted') do %>
-      <i class="fa fa-trash-o fa-lg"></i> Deleted
-    <% end %>
-  <% end %>
 <% end %>
 
 <% content_for :search do %>

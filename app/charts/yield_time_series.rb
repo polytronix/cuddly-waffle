@@ -10,6 +10,10 @@ class YieldTimeSeries
     end
   end
 
+  def first_data
+    @productions.first[:sort_date].to_datetime
+  end
+
   def overall_average
     return 0 if @productions.empty?
     @productions.map { |s| s[:relation].avg_yield }.reduce(:+)/@productions.count

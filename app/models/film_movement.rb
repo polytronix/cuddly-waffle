@@ -1,7 +1,7 @@
 require 'csv'
 
 class FilmMovement < ActiveRecord::Base
-  include PgSearch
+  include PgSearch::Model
   include Filterable
   include Tenancy
 

@@ -1,5 +1,10 @@
 <% provide :title, "Login" %>
-
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "warning" %>">
+    <a class="close" data-dismiss="alert">x</a>
+    <%= msg %>
+  </div>
+<% end %>
 <div class="container">
   <div class="jumbotron login">
     <%= form_for :login, { url: login_path, :html => { id: 'login-form', onSubmit: "mixpanel.track('login')" } } do |f| %>

@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-  VALID_IPS = ["66.226.220.106",   #PI Dallas (805)
+  VALID_IPS = ["207.91.154.154", #PI (701) -PDLC
+               "66.226.220.106",   #PI Dallas (805)
                "66.226.207.10",
                "120.33.232.194",   #PE Fujian
-               "127.0.0.1"]        #localhost
+               "127.0.0.1","::1"]        #localhost
 
   protect_from_forgery
 
@@ -36,8 +37,9 @@ private
   end
 
   def check_ip
+    puts"remote_ip",request.remote_ip.inspect
     unless VALID_IPS.include?(request.remote_ip) || current_user.admin?
-      flash[:alert] = "Access denied: invalid IP"
+     flash[:alert] = "Access denied: invalid IP"
       deny_access
     end
   end

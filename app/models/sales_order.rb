@@ -17,7 +17,7 @@ class SalesOrder < ActiveRecord::Base
   validates :release_date, presence: true
   validates :due_date, presence: true
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :search, against: [:code, :customer, :ship_to, :note], 
     :using => { tsearch: { prefix: true } }
 

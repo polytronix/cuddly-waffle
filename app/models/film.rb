@@ -46,7 +46,7 @@ class Film < ActiveRecord::Base
   scope :serial_date_before, lambda {|date| join_master_films.merge(MasterFilm.serial_date_before(date)) }
   scope :serial_date_after, lambda {|date| join_master_films.merge(MasterFilm.serial_date_after(date)) }
   
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :search,
                   against: [:serial, :note, :shelf, :phase],
                   using: { tsearch: { prefix: true } },

@@ -23,7 +23,7 @@ class JobDate < ActiveRecord::Base
   scope :part_number_like, ->(part_number) { join_job_orders
                                         .merge(JobOrder.part_number_like(part_number)) }
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :search, 
     against: [:step], 
     using: { tsearch: { prefix: true } },

@@ -20,7 +20,7 @@ class ProductionsController < ApplicationController
   private
   
   def grouped_productions
-    TimeSeriesGrouper.new(filtered_production_master_films, 'serial_date')
+    TimeSeriesGrouper.new(filtered_production_master_films, 'serial_date').by_day
   end
 
   def filtered_production_master_films

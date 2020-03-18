@@ -48,4 +48,7 @@
   </td>
   <td class="note"><%= film.note %></td>
   <td class="serial_date"><%= film.serial_date %></td>
+  <% if current_user.admin? %>
+    <td class="serial_date"><%= link_to 'delete data', delete_data_film_path(film.id) %></td>
+  <% end %>
 </tr>

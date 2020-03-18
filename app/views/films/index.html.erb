@@ -3,7 +3,7 @@
   <button name="qrcodes" class="btn btn-default submit-selected" disabled="disabled"><i class="fa fa-check"></i> QR codes</button>
   <%= link_to_export("Films", params) %>
 
-  <%= render 'shared/sort_dropdown', current: sort, choices: [['serial','desc'], ['area','asc'], ['shelf','asc']] %>
+  <%= render 'shared/sort_dropdown', current: sort, choices: [['serial','desc'], ['area','asc'], ['shelf','asc']] %> 
   
 <%= paginate @films , outer_window: 3%>
 

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.5.3'
+ruby '2.5.1'
 gem 'rails', '~> 5.1.2'
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 gem 'jquery-rails'
@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'pg_search', '~> 2.1', '>= 2.1.2'
 gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 gem 'sentry-raven', '~> 2.7', '>= 2.7.4'
+gem 'sorted', '~> 2.2'
 
 gem 'puma', '~> 3.12'
 

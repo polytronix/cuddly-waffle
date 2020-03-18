@@ -2,6 +2,7 @@ class FilmsController < ApplicationController
   require 'rqrcode'
 
     def index
+      puts"in index"
     @films  = Kaminari.paginate_array(filtered_films).page(params[:page]).per(10)
     respond_to do |format|
       format.html
@@ -68,6 +69,11 @@ class FilmsController < ApplicationController
   def restore
     @film = tenant_films.find(params[:id])
     @film.update_attributes(deleted: false)
+  end
+  def delete_data
+    @film = Film.find_by_id(params[:id])
+    @film.destroy
+    redirect_to root_path
   end
 
 
