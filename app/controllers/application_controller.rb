@@ -3,15 +3,17 @@ class ApplicationController < ActionController::Base
                "66.226.220.106",   #PI Dallas (805)
                "66.226.207.10",
                "120.33.232.194",   #PE Fujian
-               "127.0.0.1","::1"]        #localhost
+               "68.203.130.1",    #PI Remote
+               "127.0.0.1","::1"        #localhost
+               "54.196.166.54"]     #ping pcms ip address
 
   protect_from_forgery
-
-  before_action :check_auth
+  before_action :check_auth, except: [:new, :create]
+  #before_action :check_auth
   before_action :check_ip
   before_action :set_raven_user_context, if: :current_user
   around_action :set_tenant_time_zone, if: :current_tenant
-
+  
 private
 
   def current_user
