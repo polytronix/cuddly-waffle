@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
                "66.226.207.10",
                "120.33.232.194",   #PE Fujian
                "68.203.130.1",    #PI Remote
-               "127.0.0.1","::1"        #localhost
+               "127.0.0.1","::1",        #localhost
                "52.6.217.20"]     #ping pcms ip address
 
   protect_from_forgery
