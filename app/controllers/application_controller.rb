@@ -42,7 +42,7 @@ private
     puts"remote_ip",request.remote_ip.inspect
     unless VALID_IPS.include?(request.remote_ip) || current_user.admin?
      flash[:alert] = "Access denied: invalid IP"
-      deny_access
+      #deny_access
     end
   end
 
