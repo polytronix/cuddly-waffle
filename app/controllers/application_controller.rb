@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   before_action :check_ip
   before_action :set_raven_user_context, if: :current_user
   around_action :set_tenant_time_zone, if: :current_tenant
-  end 
+ 
   
 private
 
