@@ -1,3 +1,4 @@
+
 class MasterFilm < ActiveRecord::Base
   include Filterable
   include Tenancy
