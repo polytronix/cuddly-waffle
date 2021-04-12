@@ -34,6 +34,8 @@ gem "awesome_print", require:"ap"
 
 # gem 'rack-timeout' # used to timeout puma requests
 
+gem 'honeybadger' #tracking and reporting errors triggered by application
+
 group :production do
   # gem 'rails_12factor'
   gem 'rails_12factor', '~> 0.0.3'
