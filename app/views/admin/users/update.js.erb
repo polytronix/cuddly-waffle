@@ -1,0 +1,4 @@
+var user_row = $("<%= "#user-#{@user.id}" %>")
+$('#forms-modal').modal('hide')
+user_row.replaceWith("<%= j render 'user', user: @user %>");
+$(user_row.selector).addClass("info");

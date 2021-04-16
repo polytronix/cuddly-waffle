@@ -1,0 +1,76 @@
+<li id="<%= "salesorder-#{sales_order.id}" %>" class="salesorder panel panel-default">
+<div class="panel-heading">
+  <%= link_to_modal_edit(edit_sales_order_path(sales_order), sales_order, class: "pull-left edit-sales-order") %>
+  <div class="dropdown pull-right">
+    <a class="move-sales-order" data-toggle="dropdown" href="#">
+      <i class="fa fa-exchange"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+      <%= link_to "In Progress", move_sales_order_path(sales_order, destination: "in_progress"), remote: true, method: :patch unless sales_order.in_progress? %>
+      </li>
+      <li>
+      <%= link_to "Hold", move_sales_order_path(sales_order, destination: "on_hold"), remote: true, method: :patch unless sales_order.on_hold? %>
+      </li>
+      <li>
+      <%= link_to "Ship", edit_ship_date_sales_order_path(sales_order), { :"data-toggle" => "modal", :"data-target" => "#forms-modal", id: "salesorder-#{sales_order.id}-ship", class: "edit-ship-date" } unless sales_order.shipped? %>
+      </li>
+      <li>
+      <%= link_to "Cancel", move_sales_order_path(sales_order, destination: "cancelled"), remote: true, method: :patch unless sales_order.cancelled? %>
+      </li>
+    </ul>
+  </div>
+  <h4 class="panel-title">
+    <strong><%= sales_order.code %></strong> - <%= sales_order.customer %>
+    <% if sales_order.shipped? %>
+      <span class="pull-right text-success"><%= "Shipped on #{sales_order.ship_date} " %></span>
+    <% end %>
+  </h4>
+</div>
+<div class="panel-body">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <span>Ship to: <strong><%= sales_order.ship_to %><br/></strong></span>
+      <span>Note: <strong><%= sales_order.note %></strong></span>
+    </div>
+    <div class="col-md-6 text-right">
+      <span class="">Released: <strong><%= sales_order.release_date %><br/></strong></span>
+      <span class="">Due: <strong><%= sales_order.due_date %></strong></span>
+    </div>
+  </div>
+  <div class="progress text-center">
+    <span>
+      count: <strong><%= "#{sales_order.assigned_film_count}/#{sales_order.total_quantity}" %></strong> 
+      area: <strong><%= "#{format_area(sales_order.total_assigned_area)}/#{format_area(sales_order.total_custom_area)}" %></strong>
+      utilization: <strong><%= format_utilization(sales_order.utilization) %></strong>
+    </span>
+    <div class="progress-bar" style="<%= "width: #{sales_order.assigned_film_percentage}%" %>"></div>
+  </div>
+  <ul class="list-inline salesorder-films">
+    <%= render partial: "film", collection: sales_order.films %>
+  </ul>
+</div>
+<div id="<%= "collapse-#{sales_order.id}" %>" class="panel-body panel-collapse collapse">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Width</th>
+        <th>Length</th>
+        <th>Qty</th>
+        <th>Type</th>
+        <th>Wires</th>
+        <th>Busbars</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "line_item", collection: sales_order.line_items %>
+    </tbody>
+  </table>
+</div>
+<div class="panel-footer">
+  <a class="accordion-toggle" data-toggle="collapse" href="<%= "#collapse-#{sales_order.id}" %>">
+    <i class="fa fa-chevron-down"></i><strong>Line items</strong>
+  </a>
+</div>
+</li>

@@ -1,0 +1,129 @@
+$grid-gutter-width: 16px;
+
+body {
+  min-height: 600px;
+}
+
+.pagination {
+  margin: 0 !important;
+}
+
+.chart {
+  min-height: 600px;
+}
+
+td.select-box {
+  width: 22px;
+}
+
+.ul, ol {
+  padding: 0;
+}
+
+.panel-group {
+  margin-top: 5px;
+}
+
+.search-form {
+  margin-bottom: 10px;
+  .form-group {
+    margin-bottom: 5px;
+}
+}
+
+.jumbotron.login {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 300px;
+}
+
+.modal-header .form-group {
+  margin-bottom: 0;
+}
+
+.modal .panel {
+  margin-bottom: 0;
+}
+
+.datepicker {z-index: 1151 !important;}
+
+.progress {
+  margin-bottom: 10px !important;
+
+  .progress-bar {
+    opacity: 0.6;
+  }
+
+  span {
+    z-index: 100;
+    position: absolute;
+  }
+}
+
+.summary dl {
+  margin-bottom: 0px;
+  opacity: 0.75;
+}
+
+.page-head .nav-tabs {
+  margin-bottom: 10px;
+}
+
+.content {
+  margin-top: 15px;
+}
+
+.navbar {
+  margin-bottom: 0px !important;
+}
+
+.calendar-header {
+  text-align: center;
+
+  .calendar-title { display: inline-block; }
+
+  .calendar-prev-link { margin-right: 1em }
+  .calendar-next-link { margin-left: 1em }
+}
+
+.calendar-table {
+
+  td {
+    min-height: 100px;
+
+    .calendar-item, .panel-heading, .panel-footer {
+      padding: 3px 10px;
+    }
+  }
+
+  dl {
+    margin-bottom: 0;
+
+    dt { width: 80px; }
+    dd { margin-left: 100px; }
+  }
+}
+
+.salesorder-films {
+  li {
+    cursor: pointer;
+  }
+  dl {
+    margin-bottom: 0;
+
+    dt { width: 70px; }
+    dd { margin-left: 90px; }
+  }
+}
+
+.password-fields {
+  display: none;
+}
+
+.table-borderless {
+  td, th {
+    border: none !important;
+  }
+}

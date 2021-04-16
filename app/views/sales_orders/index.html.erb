@@ -1,0 +1,14 @@
+<%= link_to_modal_new(new_sales_order_path, "Enter sales order") %>
+
+<div class="btn-group">
+  <%= link_to_export("Orders", params.merge(data: "orders")) %>
+  <%= link_to_export("Line items", params.merge(data: "line_items")) %>
+</div>
+
+<%= render 'shared/sort_dropdown', current: sort, choices: [['code','desc'], ['release_date','desc'], ['due_date','desc'], ['ship_date', 'desc']] %>
+
+<%= paginate @sales_orders %>
+
+<ol class="list-unstyled panel-group">
+  <%= render @sales_orders %>
+</ol>

@@ -1,0 +1,2 @@
+var sales_order_row = $("<%= "#salesorder-#{@sales_order.id}" %>")
+sales_order_row.replaceWith("<%= j render 'moved_sales_order', sales_order: @sales_order %>");

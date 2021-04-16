@@ -1,0 +1,29 @@
+<fieldset class="form-group lineitem-fields">
+  <div class="form-group">
+    <%= label_tag :line_item, "Line item", class: "control-label col-md-2" %>
+    <div class="col-md-3">
+      <%= f.number_field :custom_width, placeholder: "Width", step: "any", default: true %>
+    </div>
+    <div class="col-md-3">
+      <%= f.number_field :custom_length, placeholder: "Length", step: "any", default: true %>
+    </div>
+    <div class="col-md-2">
+      <%= f.number_field :quantity, placeholder: "Qty", default: true %>
+    </div>
+    <%= f.hidden_field :_destroy %>
+     <%= f.hidden_field :_destroy, :sale_id => f.object.id %>
+    <%= link_to '#', class: "remove-fields" do %>
+      <i class="fa fa-minus"></i>remove
+    <% end %>
+     <%= link_to "Duplicate", duplicate_update_path(f.object.id) %>
+  </div>
+  <div class="col-md-10 col-md-offset-2">
+    <div class="form-group">
+      <%= f.inline_radio :product_type, "Film", "Film" %>
+      <%= f.inline_radio :product_type, "Glass", "Glass" %>
+    </div>
+  </div>
+  <%= f.text_field :wire_length, placeholder: "Wires", label: false %>
+  <%= f.text_field :busbar_type, placeholder: "Busbar", label: false %>
+  <%= f.text_area :note, placeholder: "Note", label: false %>
+</fieldset>

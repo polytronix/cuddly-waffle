@@ -1,0 +1,11 @@
+<tr id="<%= "user-#{user.id}" %>">
+  <td>
+    <%= link_to_modal_edit(edit_user_path(user), user, class: "edit-user") %>
+  </td>
+  <td class="full_name"><%= user.full_name %></td>
+  <td class="username"><%= user.username %></td>
+  <td class="role_title"><%= user.role_level %></td>
+  <td class="chemist"><%= user.chemist %></td>
+  <td class="operator"><%= user.operator %></td>
+  <td class="inspector"><%= user.inspector %></td>
+</tr>

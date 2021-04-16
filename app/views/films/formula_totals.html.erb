@@ -1,0 +1,42 @@
+<script>
+  $(function () { 
+    $('#film-formula-totals').highcharts({
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: false
+      },
+      xAxis: {
+        categories: <%= raw(@data.values) %>
+      },
+      yAxis: [{
+        title: {
+          text: 'Count'
+        }
+      }, {
+        title: {
+          text: 'Area'
+        }
+      }],
+      plotOptions: {
+        series: {
+          groupPadding: 0.25
+        }
+      },
+      series: [{
+        yAxis: 0,
+        name: 'Count',
+        data: <%= raw(@data.counts) %>,
+        pointPlacement: 0.2
+        }, {
+        yAxis: 1,
+        name: 'Area',
+        data: <%= raw(@data.areas) %>,
+        pointPlacement: -0.2
+      }]
+    });
+  });
+</script>
+
+<div id="film-formula-totals" class="chart"></div>

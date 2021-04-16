@@ -1,0 +1,20 @@
+<div class="panel-group">
+  <% @shelves.each do |s| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="<%= "#collapse-#{s[0].parameterize}" %>">
+            <%= "#{s[0]} " %><span class="badge"><%= s[1].count %></span>
+          </a>
+        </h4>
+      </div>
+      <ul id="<%= "collapse-#{s[0].parameterize}" %>" class="list-group panel-collapse collapse">
+        <% s[1].each do |f| %>
+          <li class="list-group-item">
+          <strong><%= "#{f.serial} --" %></strong><%= " #{f.width} x #{f.length}" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

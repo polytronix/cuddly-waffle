@@ -1,0 +1,23 @@
+<%= Kaminari.paginate_array(@job_orders) %>
+
+<%= link_to_modal_new(new_job_order_path, "Enter job order") %>
+
+<table id="job-orders" class="table table-condensed">
+  <thead>
+    <tr>
+      <th></th>
+      <th>JO#</th>
+      <th>Qty</th>
+      <th>Part #</th>
+      <th>Run #</th>
+      <th>Priority</th>
+      <th>Note</th>
+      <% JobDate::STEPS.each do |step| %>
+        <th>
+          <%= step %>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+  <%= render partial: "job_order", collection: @job_orders %>
+</table>

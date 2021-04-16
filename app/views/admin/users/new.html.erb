@@ -1,0 +1,19 @@
+<%= modal_form_for @user do |f| %>
+  <div class="modal-header">
+    <h4 class="modal-title text-center">New user</h4>
+  </div>
+  <div class="modal-body">
+    <%= f.text_field :full_name %>
+    <%= f.text_field :username %>
+    <%= f.password_field :password %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.select :role_level, User.role_levels.keys, {}, label: "Role" %>
+    <%= f.check_box :chemist %>
+    <%= f.check_box :operator %>
+    <%= f.check_box :inspector %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <%= f.submit "Create user", class: "btn btn-success" %>
+  </div>
+<% end %>

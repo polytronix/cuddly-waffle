@@ -1,0 +1,19 @@
+<%= modal_form_for @master_film do |f| %>
+  <div class="modal-body">
+    <%= f.text_field :serial, disabled: !current_user.admin? %>
+    <div class="form-group">
+      <%= label_tag "Effective", nil, class: "control-label col-md-2" %>
+      <div class="col-md-4">
+        <%= f.number_field :effective_width, placeholder: "Width", step: "any", class: "form-control", default: true %>
+      </div>
+      <div class="col-md-4">
+        <%= f.number_field :effective_length, placeholder: "Length", step: "any", class: "form-control", default: true %>
+      </div>
+    </div>
+    <%= render 'master_film_fields', f: f %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <%= f.submit "Update", class: "btn btn-success" %>
+  </div>
+<% end %>

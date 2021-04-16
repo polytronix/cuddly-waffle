@@ -1,0 +1,40 @@
+<script>
+  $(function () {
+    $('#yield_time_series').highcharts({
+      chart: {
+        type: 'spline'
+      },
+      title: {
+        text: false
+      },
+      xAxis: {
+        type: 'datetime',
+        title: {
+          text: 'Start Date'
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: '% yield'
+        },
+        plotLines: [{
+          color: 'red',
+          value: <%= @time_series.overall_average %>,
+          width: 2,
+          zIndex: 5,
+          label: {
+            align: 'right',
+            text: "<%= format_yield(@time_series.overall_average) %>"
+          }
+        }]
+      },
+      series: [{
+        name: 'yield',
+        data: <%= raw @time_series.data %>
+      }]
+    });
+  });
+</script>
+<%= text_field_tag :serial_date_after, params[:serial_date_after], placeholder: "Start date", class: "form-control bootstrap-datepicker bootstrap-datepicker-start" %>
+<div id="yield_time_series" class="chart"></div>

@@ -1,0 +1,4 @@
+$('#forms-modal').modal('hide')
+var master_film_row = $("<%= "#masterfilm-#{@master_film.id}" %>")
+$(master_film_row).replaceWith("<%= j render 'master_film', master_film: @master_film %>");
+$(master_film_row.selector).addClass("info")

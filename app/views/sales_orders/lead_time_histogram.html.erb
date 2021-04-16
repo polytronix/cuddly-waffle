@@ -1,0 +1,52 @@
+<script>
+  $(function () {
+    $('#lead_time_histogram').highcharts({
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: false
+      },
+      legend: {
+        enabled: false
+      },
+      xAxis: {
+        title: {
+          text: 'Lead days'
+        },
+        type: 'category',
+        categories: <%= raw @histogram.lead_day_range %>
+      },
+      yAxis: {
+        min: 0,
+        minTickInterval: 1,
+        title: {
+          text: 'Orders count'
+        }
+      },
+      tooltip: {
+        formatter: function () {
+          var serial_array = this.point.serials;
+          var serial_str = ""; 
+          for(var i = 0; i < serial_array.length; i++){
+            serial_str = serial_str + serial_array[i] + '<br>';
+          }
+          return serial_str;
+        }
+      },
+      series: [{
+        name: "Orders",
+              data: [
+                <% @histogram.data.each do |p| %>
+                  {
+                    y: <%= raw p[:count] %>,
+                           serials: <%= raw p[:serials] %>
+                  },
+            <% end %>
+              ]
+      }]
+    });
+  });
+</script>
+
+<div id="lead_time_histogram" class="chart"></div>

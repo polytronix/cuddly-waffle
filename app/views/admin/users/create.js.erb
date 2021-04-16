@@ -1,0 +1,3 @@
+$('#forms-modal').modal('hide')
+$('.main tbody').prepend("<%= j render 'user', user: @user %>");
+$("<%= "#user-#{@user.id}" %>").addClass("success")

@@ -1,0 +1,29 @@
+<%= link_to_modal_new(new_master_film_path, "Enter film") %>
+<%= link_to_export("Master films", params) %>
+<%=  paginate @master_films %>
+
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Serial</th>
+      <th>Formula</th>
+      <th>Mix/g</th>
+      <th>Mach</th>
+      <th>ITO top</th>
+      <th>Thinky</th>
+      <th>Chemist</th>
+      <th>Operator</th>
+      <th>Inspector</th>
+      <th>Eff W</th>
+      <th>Eff L</th>
+      <th>Yield</th>
+      <th>Defects</th>
+      <th>Laminated</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>     
+    <%= render @master_films %>
+  </tbody>
+</table>

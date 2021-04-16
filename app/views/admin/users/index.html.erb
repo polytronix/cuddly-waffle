@@ -1,0 +1,22 @@
+<%= paginate @users %>
+
+<%= link_to_modal_new(new_user_path, "New user") %>
+
+<table class="table table-condensed table-hover">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Role</th>
+    <th>Chemist</th>
+    <th>Operator</th>
+    <th>Inspector</th>
+  </tr>
+  <tr>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render @users %>
+  </tbody>
+</table>

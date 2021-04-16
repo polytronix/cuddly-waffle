@@ -1,0 +1,38 @@
+<%= f.select :function, MasterFilm.functions.keys, {}, { class: "form-control" } %>
+<%= f.text_field :formula %>
+<%= f.number_field :mix_mass, step: "any" %>
+<%= f.collection_select :machine_id, current_tenant.machines, :id, :code, { prompt: "Choose machine..."}, { class: "form-control" } %>
+<%= f.text_field :film_code_top, label: "ITO top" %>
+<%= f.text_field :thinky_code %>
+<%= f.select :chemist, current_tenant.users.chemists.names, { prompt: "Choose chemist..." }, { class: "form-control" } %>
+<%= f.select :operator, current_tenant.users.operators.names, { prompt: "Choose operator..." }, { class: "form-control" } %>
+<%= f.select :inspector, current_tenant.users.inspectors.names, { prompt: "Choose inspector..." }, { class: "form-control" } %>
+<%= f.number_field :b_value, label: "b* value", step: "any" %>
+<%= f.number_field :temperature, label: "Temp", step: "any" %>
+<%= f.number_field :humidity, label: "Humidity", step: "any" %>
+<%= f.number_field :micrometer_left, label: "Mike L", step: "any" %>
+<%= f.number_field :micrometer_right, label: "Mike R", step: "any" %>
+<%= f.number_field :run_speed, step: "any" %>
+<%= f.number_field :wep_uv_on, label: "WEP UV on", step: "any" %>
+<%= f.number_field :wep_visible_on, label: "WEP visible on", step: "any" %>
+<%= f.number_field :wep_ir_on, label: "WEP IR on", step: "any" %>
+<%= f.number_field :wep_uv_off, label: "WEP UV off", step: "any" %>
+<%= f.number_field :wep_visible_off, label: "WEP visible off", step: "any" %>
+<%= f.number_field :wep_ir_off, label: "WEP IR off", step: "any" %>
+
+<%= f.text_area :note %>
+<fieldset class="panel panel-warning">
+  <div class="panel-heading"><h6 class="panel-title text-center">Defects</h6></div>
+  <div class="panel-body">
+    <%= f.fields_for :defects do |d| %>
+      <% @master_film.defects.try(:each) do |key, value| %>
+        <%= render 'defect_fields', f: d, key: key, value: value %>
+      <% end %>
+    <% end %>
+    <div class="add-fields-link-wrapper form-group">
+      <div class="col-md-offset-2 col-md-8">
+        <%= link_to_add_hstore_fields("Add defect", "new_defect_fields") %>
+      </div>
+    </div>
+  </div>
+</fieldset>

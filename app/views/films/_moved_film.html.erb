@@ -1,0 +1,7 @@
+<tr id="<%= "film-#{film.id}" %>" class="alert alert-info">
+  <td></td>
+  <td></td>
+  <td colspan="100%">
+    <%= "#{content_tag(:strong, film.serial)} #{content_tag(:i, nil, class: 'fa fa-arrow-right')} #{content_tag(:strong, film.phase)}".html_safe %>
+  </td>
+</tr>

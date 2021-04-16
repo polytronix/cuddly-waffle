@@ -1,0 +1,19 @@
+<% provide :title, "Movements history" %>
+
+<% content_for :nav_list do %>
+  <%= link_to "Film movements", film_movements_path, class: "list-group-item active" %>
+<% end %>
+
+<% content_for :search do %>
+  <%= render 'search_form' %>
+<% end %>
+
+<% content_for :nav do %>
+  <ul class="nav nav-tabs">
+    <%= tab_link_to("Index", 'index') %>
+    <%= tab_link_to("Map", 'map') %>
+    <%= tab_link_to("2-month inventory totals", 'inventory_totals') %>
+  </ul>
+<% end %>
+
+<%= render template: "layouts/dashboard" %>
