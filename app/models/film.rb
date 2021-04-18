@@ -1,4 +1,5 @@
 class Film < ActiveRecord::Base
+  include PgSearch::Model
   require 'rqrcode'
   include Filterable
   include Tenancy

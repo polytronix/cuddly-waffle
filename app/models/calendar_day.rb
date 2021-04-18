@@ -1,7 +1,7 @@
 class CalendarDay
   extend SimpleCalendar
   
-  attr_accessor :starts_time
+  attr_accessor :starts_time, :starts_at
 
   def initialize(starts_at, orders)
     @starts_at = starts_at

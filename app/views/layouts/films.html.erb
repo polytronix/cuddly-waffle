@@ -28,7 +28,9 @@
 <% content_for :summary do %>
   <dl class="dl-horizontal pull-right">
     <dt>Pieces</dt>
-    <dd><%= filtered_films.count(:all) %></dd>
+    <dd><%= filtered_films.count %></dd>
+    <dt>Area</dt>
+    <dd><%= filtered_films.sum(&:area).to_f.round(2) %></dd>
   </dl>
 <% end %>
 

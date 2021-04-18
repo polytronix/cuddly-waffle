@@ -65,7 +65,7 @@ class MasterFilmsController < ApplicationController
   helper_method :filtered_master_films
 
   def tenant_master_films
-    @tenant_master_films ||= current_tenant.master_films
+    @tenant_master_films ||= current_tenant.master_films.order(serial: :desc)
   end
 
   def filtering_params

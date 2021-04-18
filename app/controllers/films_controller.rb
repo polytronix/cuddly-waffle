@@ -1,8 +1,8 @@
 class FilmsController < ApplicationController
   require 'rqrcode'
 
-    def index
-      puts"in index"
+  def index
+    puts"in index"
     @films  = Kaminari.paginate_array(filtered_films).page(params[:page]).per(10)
     respond_to do |format|
       format.html
@@ -84,8 +84,8 @@ class FilmsController < ApplicationController
   end
   helper_method :tenant_films
 
-   def filtered_films
-    @filtered_films ||= tenant_films.phase(params[:phase], current_tenant)
+  def filtered_films
+    @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).sort.reverse
   end
   helper_method :filtered_films
 
