@@ -85,7 +85,7 @@ class FilmsController < ApplicationController
   helper_method :tenant_films
 
    def filtered_films
-    @filtered_films ||= tenant_films.phase(params[:phase], current_tenant)
+    @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).sort_by(&:serial).reverse
   end
   helper_method :filtered_films
 

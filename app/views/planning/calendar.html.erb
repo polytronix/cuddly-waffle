@@ -1,8 +1,12 @@
 <%= month_calendar events: @calendar_days, title: calendar_title, header: calendar_header, previous_link: calendar_previous_link, next_link: calendar_next_link, table: calendar_table, td: calendar_td do |date, calendar_days| %>
 
   <%= date.day %>
-  <% if !calendar_days.empty? %>
-    <% calendar_day = calendar_days.first %>
+
+<!--   <% if !calendar_days.empty? %>
+    <% calendar_day = calendar_days.first %> -->
+    <% calendar_day = calendar_days.select { |jd| jd.starts_at == date } %>
+  <% if !calendar_day.empty? %>
+    <% calendar_day = calendar_day.first %>
     <div class="panel panel-default">
       <ul class="list-group">
         <% calendar_day.orders_due.each do |order| %>

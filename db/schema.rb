@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20170413162721) do
     t.decimal "micrometer_right"
     t.decimal "run_speed"
     t.string "inspector"
-    t.date "serial_date", default: "2019-01-14", null: false
+    t.date "serial_date", default: "2021-04-16", null: false
     t.integer "function", default: 0, null: false
     t.decimal "yield"
     t.decimal "temperature"
@@ -185,6 +185,5 @@ ActiveRecord::Schema.define(version: 20170413162721) do
     t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "job_dates", "job_orders"
   add_foreign_key "job_dates", "job_orders"
 end

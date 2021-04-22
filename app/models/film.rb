@@ -1,4 +1,5 @@
 class Film < ActiveRecord::Base
+  include PgSearch::Model
   require 'rqrcode'
   include Filterable
   include Tenancy
@@ -50,7 +51,7 @@ class Film < ActiveRecord::Base
   pg_search_scope :search,
                   against: [:serial, :note, :shelf, :phase],
                   using: { tsearch: { prefix: true } },
-                  associated_against: { master_film: [:formula], sales_order: [:code] }
+                  associated_against: { master_film: [:formula], sales_order: [:code], dimensions: [:width, :length] }
 
   def split
     master_film.create_film(phase, width, length)
