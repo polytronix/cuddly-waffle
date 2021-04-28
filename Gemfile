@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ruby '2.5.1'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.2.5'
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 #gem 'sassc'
 gem 'jquery-rails'
