@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.5.1'
 gem 'rails', '~> 5.1.2'
-gem 'sass-rails', '~> 5.0', '>= 5.0.4'
+gem 'sass-rails', '~> 6.0'
 #gem 'sassc'
 gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
