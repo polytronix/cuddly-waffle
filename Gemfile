@@ -11,7 +11,7 @@ gem 'responders', '~> 2.4'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'newrelic_rpm', '~> 5.3', '>= 5.3.0.346'
 
-gem 'nokogiri', '~> 1.10', '>= 1.10.8' 
+gem 'nokogiri', '~> 1.11' 
 
 gem 'pg', '~> 1.0'
 gem 'highcharts-rails', '~> 6.0', '>= 6.0.3'
