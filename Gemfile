@@ -24,7 +24,7 @@ gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 gem 'sentry-raven', '~> 2.7', '>= 2.7.4'
 gem 'sorted', '~> 2.2'
 
-gem 'puma', '~> 5.0', '>= 5.0.4'
+gem 'puma', '~> 5.3'
 
 gem 'pry'
 gem 'pry-byebug'
