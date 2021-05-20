@@ -17,7 +17,7 @@ class Film < ActiveRecord::Base
 
   delegate :formula, :serial_date, :b_value, to: :master_film
   delegate :code, to: :sales_order, prefix: true, allow_nil: true
-  delegate :width, :length, to: :primary_dimension
+  delegate :width, :length, to: :primary_dimension, allow_nil: true
 
   before_update :set_area
   before_save :upcase_shelf
