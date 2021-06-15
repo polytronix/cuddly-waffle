@@ -7,7 +7,7 @@ gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'uglifier', '~> 4.1', '>= 4.1.17'
-gem 'responders', '~> 2.4'
+gem 'responders', '~> 3.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'newrelic_rpm', '~> 5.3', '>= 5.3.0.346'
 
