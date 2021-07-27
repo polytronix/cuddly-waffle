@@ -8,7 +8,7 @@ class SolderSeries
       series = {}
       series[:height1] = []
       series[:height2] = []
-      ordered_films.include?(:solder_measurements).map.with_index do |film, i|
+      ordered_films.includes(:solder_measurements).map.with_index do |film, i|
         film.solder_measurements.map do |sm|
           series[:height1] << [i, sm.height1.to_f]
           series[:height2] << [i, sm.height2.to_f]
