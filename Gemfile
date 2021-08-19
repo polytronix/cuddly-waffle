@@ -28,6 +28,7 @@ gem 'puma', '~> 5.0', '>= 5.0.4'
 
 gem 'pry'
 gem 'pry-byebug'
+gem 'rspec' #test coverage
 #this is used for the table print of database
 gem 'table_print', '~> 1.5', '>= 1.5.6'
 gem "awesome_print", require:"ap"
@@ -39,3 +40,5 @@ group :production do
   gem 'rails_12factor', '~> 0.0.3'
   gem 'rack-timeout', '~> 0.5.1'
 end
+
+gem 'simplecov', require: false, group: :test
