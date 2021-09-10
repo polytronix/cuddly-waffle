@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ruby '2.5.1'
-gem 'rails', '~> 5.1.7'
+gem 'rails', '~> 5.2.6'
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 #gem 'sassc'
 gem 'jquery-rails'
@@ -23,6 +23,8 @@ gem 'pg_search', '~> 2.1', '>= 2.1.2'
 gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 gem 'sentry-raven', '~> 2.7', '>= 2.7.4'
 gem 'sorted', '~> 2.2'
+# Reduce boot times through caching; required in config/boot.rb
+gem 'bootsnap', '~> 1.4', '>= 1.4.6'
 
 gem 'puma', '~> 5.0', '>= 5.0.4'
 
@@ -34,6 +36,9 @@ gem 'table_print', '~> 1.5', '>= 1.5.6'
 gem "awesome_print", require:"ap"
 
 # gem 'rack-timeout' # used to timeout puma requests
+group :development do 
+  gem 'listen', '3.1.5'
+end
 
 group :production do
   # gem 'rails_12factor'
