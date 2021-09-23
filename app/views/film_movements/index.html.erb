@@ -1,4 +1,4 @@
-<%= link_to "Export", film_movements_path(params.merge(format: "csv")), id: "fg-movements-export", class: "btn btn-default" %>
+<%= link_to "Export", film_movements_path(request.params.merge(format: "csv")), id: "fg-movements-export", class: "btn btn-default" %>
 
 <%= paginate @film_movements %>
 
