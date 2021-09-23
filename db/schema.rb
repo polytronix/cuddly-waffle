@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413162721) do
+ActiveRecord::Schema.define(version: 2017_04_13_162721) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "hstore"
+  enable_extension "plpgsql"
 
   create_table "dimensions", force: :cascade do |t|
     t.decimal "width", default: "0.0", null: false
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20170413162721) do
     t.decimal "micrometer_right"
     t.decimal "run_speed"
     t.string "inspector"
-    t.date "serial_date", default: "2021-04-16", null: false
+    t.date "serial_date", default: "2021-09-14", null: false
     t.integer "function", default: 0, null: false
     t.decimal "yield"
     t.decimal "temperature"
