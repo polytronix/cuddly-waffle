@@ -1,15 +1,15 @@
 source 'http://rubygems.org'
 
 ruby '2.5.1'
-gem 'rails', '~> 5.2.6'
+gem 'rails', '~> 6.0.4'
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 #gem 'sassc'
 gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'uglifier', '~> 4.1', '>= 4.1.17'
-gem 'responders', '~> 2.4'
+gem 'responders', '~> 3.0.1'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-gem 'newrelic_rpm', '~> 5.3', '>= 5.3.0.346'
+# gem 'newrelic_rpm', '~> 5.3', '>= 5.3.0.346'
 
 gem 'nokogiri', '~> 1.10', '>= 1.10.8' 
 
