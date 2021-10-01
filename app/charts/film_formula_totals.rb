@@ -2,7 +2,7 @@ class FilmFormulaTotals
 
   def initialize(films)
     @films = films.join_master_films
-  end
+  end 
 
   def values
     count_and_area_by_value.map { |i| i[:value] }

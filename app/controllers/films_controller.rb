@@ -1,5 +1,6 @@
 class FilmsController < ApplicationController
   require 'rqrcode'
+  require 'pry'
 
   def index
     puts"in index"
@@ -9,7 +10,7 @@ class FilmsController < ApplicationController
       format.csv { render csv: filtered_films }
     end
   end
- 
+
   def formula_totals
     @data = FilmFormulaTotals.new(filtered_films)
   end
