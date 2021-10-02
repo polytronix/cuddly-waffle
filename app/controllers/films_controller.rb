@@ -11,7 +11,7 @@ class FilmsController < ApplicationController
   end
 
   def formula_totals
-    @data = FilmFormulaTotals.new(filtered_films)
+    @data = FilmFormulaTotals.new(filtered_films, params)
   end
 
   def dimensions_map
