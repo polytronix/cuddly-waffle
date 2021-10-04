@@ -1,6 +1,5 @@
 class FilmsController < ApplicationController
   require 'rqrcode'
-  require 'pry'
 
   def index
     puts"in index"
@@ -12,7 +11,7 @@ class FilmsController < ApplicationController
   end
 
   def formula_totals
-    @data = FilmFormulaTotals.new(filtered_films)
+    @data = FilmFormulaTotals.new(filtered_films, params)
   end
 
   def dimensions_map
@@ -87,16 +86,15 @@ class FilmsController < ApplicationController
 
   def filtered_films
     if params[:text_search].present?
-      @filtered_films ||= tenant_films.search(params[:text_search]).phase(params[:phase], current_tenant).sort_by(&:serial).reverse 
+      # @filtered_films ||= tenant_films.search(params[:text_search]).phase(params[:phase], current_tenant).sort_by(&:serial).reverse #It convert record to array
+      @filtered_films ||= tenant_films.search(params[:text_search]).phase(params[:phase], current_tenant).order(serial: :desc) 
     else
-      @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).sort_by(&:serial).reverse 
+      # @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).sort_by(&:serial).reverse #It convert record to array
+      @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).order(serial: :desc)
     end
     @filtered_films
   end
   helper_method :filtered_films
-
-
-
 
   def dimensions_searched?
     params[:width_greater_than].present? || params[:length_greater_than].present?

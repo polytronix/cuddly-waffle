@@ -39,7 +39,7 @@ module ApplicationHelper
 
   def link_to_export(text, params)
     if current_user.admin?
-      link_to url_for(request.params.merge(format: "csv")), class: "btn btn-default" do
+      link_to url_for(params.merge(format: "csv")), class: "btn btn-default" do
         content_tag(:i, nil, class: "fa fa-download") + " " + text
       end
     end
@@ -59,7 +59,7 @@ module ApplicationHelper
 
   def tab_link_to(text, action)
     content_tag(:li, class: params[:action] == action ? "active" : "") do
-      link_to text, url_for(request.params.merge(action: action))
+      link_to text, url_for(params.merge(action: action))
     end
   end
 

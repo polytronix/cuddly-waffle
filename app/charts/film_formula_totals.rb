@@ -1,8 +1,12 @@
 class FilmFormulaTotals
 
-  def initialize(films)
+   def initialize(films, params = nil) #fixing formula_total_chart
+    if params.present? && params[:text_search].present?
+      @films = films.join_master_films
+    else 
     @films = films.join_master_films
   end 
+end 
 
   def values
     count_and_area_by_value.map { |i| i[:value] }
