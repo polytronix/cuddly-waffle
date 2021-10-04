@@ -4,7 +4,7 @@ class FilmFormulaTotals
     if params.present? && params[:text_search].present?
       @films = films.join_master_films
     else 
-    @films = films.join_master_films
+    @films = films.join_master_film
   end 
 end 
 
