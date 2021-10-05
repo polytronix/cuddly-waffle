@@ -28,7 +28,7 @@ class Film < ActiveRecord::Base
 
   scope :join_dimensions, -> { joins('LEFT OUTER JOIN dimensions ON dimensions.film_id = films.id').uniq }
   scope :join_master_films, ->  { joins('INNER JOIN master_films ON master_films.id = films.master_film_id') }
-  scope :join_master_films, -> {joins(:master_film)}
+  scope :join_master_film, -> { joins(:master_film)}
   scope :active, -> { where(deleted: false)
                         .join_master_films
                         .merge(MasterFilm.function_not(:test)) }
