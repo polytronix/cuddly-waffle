@@ -4,6 +4,8 @@ class Film < ActiveRecord::Base
   include Filterable
   include Tenancy
 
+  PHASE = ['recent_fg', 'large_stock', 'small_stock']
+
   belongs_to :master_film
   belongs_to :sales_order
   has_many :film_movements
