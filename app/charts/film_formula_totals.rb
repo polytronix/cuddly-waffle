@@ -1,7 +1,11 @@
 class FilmFormulaTotals
 
-  def initialize(films)
-    @films = films.join_master_films
+  def initialize(films, params = nil)
+    if params.present? && (params[:text_search].present? || Film::PHASE.include?(params[:phase]))
+      @films = films.join_master_films
+    else 
+      @films = films.join_master_film
+    end
   end
 
   def values

@@ -4,6 +4,8 @@ class Film < ActiveRecord::Base
   include Filterable
   include Tenancy
 
+  PHASE = ['recent_fg', 'large_stock', 'small_stock', 'archive_fg']
+
   belongs_to :master_film
   belongs_to :sales_order
   has_many :film_movements
@@ -17,7 +19,7 @@ class Film < ActiveRecord::Base
 
   delegate :formula, :serial_date, :b_value, to: :master_film
   delegate :code, to: :sales_order, prefix: true, allow_nil: true
-  delegate :width, :length, to: :primary_dimension
+  delegate :width, :length, to: :primary_dimension, allow_nil: true
 
   before_update :set_area
   before_save :upcase_shelf
@@ -28,6 +30,7 @@ class Film < ActiveRecord::Base
 
   scope :join_dimensions, -> { joins('LEFT OUTER JOIN dimensions ON dimensions.film_id = films.id').uniq }
   scope :join_master_films, ->  { joins('INNER JOIN master_films ON master_films.id = films.master_film_id') }
+  scope :join_master_film, ->  { joins(:master_film) }
   scope :active, -> { where(deleted: false)
                         .join_master_films
                         .merge(MasterFilm.function_not(:test)) }
@@ -81,7 +84,7 @@ class Film < ActiveRecord::Base
   def self.phase(phase, tenant = nil)
     case phase
       when "lamination", "inspection", "stock", "reserved", "wip", "fg", "nc", "scrap"
-        active.send(phase)
+        send(phase).join_master_film.not_deleted
       when "large_stock"
         active.stock.large(tenant.small_area_cutoff)
       when "small_stock"

@@ -40,6 +40,8 @@ group :development do
   gem 'listen', '3.1.5'
 end
 
+gem 'honeybadger' #tracking and reporting errors triggered by application
+
 group :production do
   # gem 'rails_12factor'
   gem 'rails_12factor', '~> 0.0.3'
