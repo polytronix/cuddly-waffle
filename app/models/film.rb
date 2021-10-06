@@ -4,7 +4,11 @@ class Film < ActiveRecord::Base
   include Filterable
   include Tenancy
 
+<<<<<<< HEAD
   PHASE = ['recent_fg', 'large_stock', 'small_stock']
+=======
+  PHASE = ['recent_fg', 'large_stock', 'small_stock', 'archive_fg']
+>>>>>>> Fixed formula issue
 
   belongs_to :master_film
   belongs_to :sales_order
