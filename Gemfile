@@ -28,8 +28,7 @@ gem 'bootsnap', '~> 1.4', '>= 1.4.6'
 
 gem 'puma', '~> 5.0', '>= 5.0.4'
 
-gem 'pry'
-gem 'pry-byebug'
+
 # gem 'rspec' #test coverage
 #this is used for the table print of database
 gem 'table_print', '~> 1.5', '>= 1.5.6'
@@ -38,6 +37,10 @@ gem "awesome_print", require:"ap"
 # gem 'rack-timeout' # used to timeout puma requests
 group :development do 
   gem 'listen', '3.1.5'
+  gem 'better_errors'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'binding_of_caller'
 end
 
 gem 'honeybadger' #tracking and reporting errors triggered by application
