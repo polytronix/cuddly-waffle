@@ -92,6 +92,8 @@ class FilmsController < ApplicationController
       # @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).sort_by(&:serial).reverse #It convert record to array
       @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).order(serial: :desc)
     end
+
+    return @filtered_films.where('serial_date BETWEEN ? AND ?', params[:serial_date_after], params[:serial_date_before]) if params[:serial_date_after].present? && params[:serial_date_before].present?
     @filtered_films
   end
   helper_method :filtered_films
