@@ -17,11 +17,11 @@
 <% content_for :summary do %>
   <dl class="dl-horizontal pull-right">
     <dt>Orders</dt>
-    <dd><%= @sales_orders1.count(:all) %></dd>
+    <dd><%= filtered_orders.count(:all) %></dd>
     <dt>Quantity</dt>
-    <dd><%= @sales_orders1.line_items.total_quantity %></dd>
+    <dd><%= filtered_orders.line_items.total_quantity %></dd>
     <dt>Custom Area</dt>
-    <dd><%= format_area(@sales_orders1.line_items.total_area) %></dd>
+    <dd><%= format_area(filtered_orders.line_items.total_area) %></dd>
   </dl>
 <% end %>
 

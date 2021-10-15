@@ -7,7 +7,7 @@ class Film < ActiveRecord::Base
   PHASE = ['recent_fg', 'large_stock', 'small_stock', 'archive_fg']
 
   belongs_to :master_film
-  belongs_to :sales_order
+  belongs_to :sales_order, optional: true
   has_many :film_movements
   has_many :dimensions, -> { order('id ASC') }
   has_many :solder_measurements, -> { order('id ASC') }

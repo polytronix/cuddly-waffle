@@ -1,6 +1,7 @@
 class MasterFilm < ActiveRecord::Base
   include Filterable
   include Tenancy
+
     DEFECT_TYPES = ['Air Bubble', 'BBL', 'Bend', 'Blocker Mark', 'Blotchy', 'Brown Line', 'BWS', 'Clear Area', 'Clear Edges', 'Clear Peak', 'Clear Spot', 'Clear Wavy Area', 'Dent', 'Dimball', 'Dimples', 'Dropper Mark', 'Delamination', 'Dust/Dirt/FOD', 'Edge Delam', 'Foamy Streak', 'Glue Impression', 'Knot', 'Material Traces', 'MD Line', 'Non-Uniform', 'Pickle', 'Peak', 'Repeating Defect', 'ROM', 'Scratch', 'Short', 'Small Clear', 'Spacer Cluster', 'Spacer Spot', 'Streak', 'Thick Spot', 'Thick Material', 'Transverse Line', 'Wavy', 'White Spot']
 
   enum function: [ :production, :test, :transfer ]
@@ -31,6 +32,7 @@ class MasterFilm < ActiveRecord::Base
   scope :formula_like, ->(formula) { where('formula ILIKE ?', formula.gsub('*', '%')) }
   scope :text_search, ->(query) { reorder('').search(query) }
   
+ 
   include PgSearch::Model
   pg_search_scope :search, 
     against: [:serial, :formula, :film_code_top, :thinky_code, :operator, :chemist, :inspector, :defects, :note],
