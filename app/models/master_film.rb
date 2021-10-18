@@ -104,7 +104,7 @@ class MasterFilm < ActiveRecord::Base
   def self.to_csv(options = {})
     types = defect_types
     CSV.generate(options) do |csv|
-      csv << %w(Serial Formula Mix/g Machine ITO Thinky b* Chemist Operator Inspector EffW EffL) + types
+      csv << %w(Serial Formula Mix/g Machine ITO Thinky b* Chemist Operator Inspector EffW EffL Area) + types
       all.each do |mf|
         csv << [mf.serial, mf.formula, mf.mix_mass, mf.machine_code, mf.film_code_top, mf.thinky_code, mf.b_value, mf.chemist, mf.operator, mf.inspector, mf.effective_width, mf.effective_length, mf.yield] + types.map{ |type| mf.defect_count(type) }
       end
