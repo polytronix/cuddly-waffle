@@ -1,4 +1,4 @@
-<script>
+<script> 
   $(function () {
     $('#wep_series').highcharts({
       chart: {
@@ -7,12 +7,12 @@
       title: {
         text: false
       },
-      xAxis: {
+      xAxis.reverse: {
         type: 'linear',
         title: {
           text: 'Serial'
         },
-        categories: <%= raw @series.data.map(&:first) %>,
+        categories: date.reverse() <%= raw @series.data.map(&:first) %>, 
         labels: {
           step: 20,
           rotation: -70
