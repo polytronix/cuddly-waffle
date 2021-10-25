@@ -13,7 +13,7 @@ class MasterFilmsController < ApplicationController
 
   def index
   
-    @master_films = Kaminari.paginate_array(filtered_master_films).page(params[:page]).per(10)
+    @master_films = Kaminari.paginate_array(filtered_master_films).page(params[:page]).per(20)
     respond_to do |format|
       format.html
       format.csv { render csv: filtered_master_films }
@@ -25,13 +25,13 @@ class MasterFilmsController < ApplicationController
   end
 
   def bvalue_series
-    @filtered_master_films_with_bvalue = filtered_master_films.where.not(b_value: nil) #Array.new(0) 
-    #filtered_master_films.each do|filtered_master_film|
-     # if filtered_master_film.b_value !=nil
-      #  @filtered_master_films_with_bvalue.push(filtered_master_film)
-      #end
-    #end
-    @series = BvalueSeries.new(@filtered_master_films_with_bvalue).reverse()
+    @filtered_master_films_with_bvalue =Array.new(0) 
+    filtered_master_films.each do|filtered_master_film|
+      if filtered_master_film.b_value !=nil
+        @filtered_master_films_with_bvalue.push(filtered_master_film)
+      end
+    end
+    @series = BvalueSeries.new(@filtered_master_films_with_bvalue)
   end
 
   def wep_series
