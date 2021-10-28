@@ -20,7 +20,7 @@ class ShipmentsController < ApplicationController
   end
 
   def filtered_shipped_orders
-    current_tenant.sales_orders.shipped.filter(filtering_params)
+    current_tenant.sales_orders.shipped #.filter(filtering_params) (Ruby 2.5 to 2.6)
   end
 
   def set_default_start_date

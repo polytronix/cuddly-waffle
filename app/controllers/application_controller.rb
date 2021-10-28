@@ -23,7 +23,7 @@ private
     capture_exception(e)
     reset_session
     redirect_to login_url
-  end
+  end 
   helper_method :current_user
   
   def current_tenant

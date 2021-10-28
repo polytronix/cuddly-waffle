@@ -1,7 +1,7 @@
 class SalesOrdersController < ApplicationController
   before_action :check_admin, only: [:destroy]
   require 'csv'
-
+  
   def index
     @sales_orders = filtered_orders.order_by(sort[0], sort[1]).page(params[:page])
     @sales_orders1 = filtered_orders.order_by(sort[0], sort[1])
@@ -98,7 +98,7 @@ class SalesOrdersController < ApplicationController
   private
 
   def filtered_orders
-    sales_orders.status(params[:status]).filter(filtering_params)
+    sales_orders.status(params[:status]) #filter.(filtering_params) (Ruby 2.5.1 > 2.6.8)
   end
   helper_method :filtered_orders
 

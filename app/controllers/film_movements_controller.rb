@@ -26,7 +26,7 @@ class FilmMovementsController < ApplicationController
   end
 
   def film_movements 
-    tenant_movements.filter(filtering_params)
+    tenant_movements  # .filter(filtering_params) (Ruby 2.5 to 2.6)
   end
 
   def filtering_params
