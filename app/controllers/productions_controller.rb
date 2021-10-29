@@ -9,7 +9,7 @@ class ProductionsController < ApplicationController
     @time_series = YieldTimeSeries.new(grouped_productions)
   end
 
-  def produced_area_time_series
+  def produced_area_time_series #Produced Area (History>Production>Produced Area)
     @time_series = ProducedAreaTimeSeries.new(grouped_productions, filtered_production_master_films)
   end
 
