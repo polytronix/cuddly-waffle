@@ -6,7 +6,7 @@ class LeadTimeHistogram
 
   def lead_day_range
     if lead_days_hash.any?
-      # (0..max_lead_days).to_a
+       (0..max_lead_days).to_a
     else
       []
     end
