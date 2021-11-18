@@ -7,6 +7,7 @@
 <%= f.select :chemist, current_tenant.users.chemists.names, { prompt: "Choose chemist..." }, { class: "form-control" } %>
 <%= f.select :operator, current_tenant.users.operators.names, { prompt: "Choose operator..." }, { class: "form-control" } %>
 <%= f.select :inspector, current_tenant.users.inspectors.names, { prompt: "Choose inspector..." }, { class: "form-control" } %>
+<%= f.text_field :Supplier_ID, label: "Supplier ID", step: "any" %>
 <%= f.number_field :b_value, label: "b* value", step: "any" %>
 <%= f.number_field :temperature, label: "Temp", step: "any" %>
 <%= f.number_field :humidity, label: "Humidity", step: "any" %>
@@ -19,6 +20,7 @@
 <%= f.number_field :wep_uv_off, label: "WEP UV off", step: "any" %>
 <%= f.number_field :wep_visible_off, label: "WEP visible off", step: "any" %>
 <%= f.number_field :wep_ir_off, label: "WEP IR off", step: "any" %>
+
 
 <%= f.text_area :note %>
 <fieldset class="panel panel-warning">
