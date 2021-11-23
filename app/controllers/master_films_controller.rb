@@ -73,8 +73,10 @@ class MasterFilmsController < ApplicationController
   end
 
   def master_film_params
-    params.require(:master_film).permit(:serial, :effective_width, :effective_length, :formula, :mix_mass, :b_value, :temperature, :humidity, :film_code_top, :machine_id, :thinky_code, :chemist, :operator, :inspector, :note, :micrometer_left, :micrometer_right, :run_speed, :function, :wep_uv_on, :wep_visible_on, :wep_ir_on, :wep_uv_off, :wep_visible_off, :wep_ir_off, :Supplier_ID, :defects).tap do |white_listed|
-      white_listed[:defects] = params[:master_film][:defects] || {}
-    end
+    # params.require(:master_film).permit(:serial, :effective_width, :effective_length, :formula, :mix_mass, :b_value, :temperature, :humidity, :film_code_top, :machine_id, :thinky_code, :chemist, :operator, :inspector, :note, :micrometer_left, :micrometer_right, :run_speed, :function, :wep_uv_on, :wep_visible_on, :wep_ir_on, :wep_uv_off, :wep_visible_off, :wep_ir_off, :Supplier_ID, :defects)
+    params.require(:master_film).permit(:serial, :effective_width, :effective_length, :formula, :mix_mass, :b_value, :temperature, :humidity, :film_code_top, :machine_id, :thinky_code, :chemist, :operator, :inspector, :note, :micrometer_left, :micrometer_right, :run_speed, :function, :wep_uv_on, :wep_visible_on, :wep_ir_on, :wep_uv_off, :wep_visible_off, :wep_ir_off, :Supplier_ID, :defects => {})
+    # .tap do |white_listed|
+    #  white_listed[:defects] = params[:master_film][:defects] || {}
+    # end
   end
 end
