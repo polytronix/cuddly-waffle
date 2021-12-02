@@ -24,3 +24,4 @@ module FilmsHelper
     @search_length ||= params[:length_greater_than].to_f unless params[:length_greater_than].empty?
   end
 end
+ 

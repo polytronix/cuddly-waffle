@@ -93,7 +93,11 @@ class FilmsController < ApplicationController
       @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).order(serial: :desc)
     end
 
+    # if params[:formula_like].present?
+      @filtered_films = tenant_films.phase(params[:phase], current_tenant).where('formula ILIKE ?', params[:formula_like].upcase.gsub('*', '%')).order(serial: :asc) if params[:formula_like].present?
+
     return @filtered_films.where('serial_date BETWEEN ? AND ?', params[:serial_date_after], params[:serial_date_before]) if params[:serial_date_after].present? && params[:serial_date_before].present?
+   
     @filtered_films
   end
   helper_method :filtered_films
