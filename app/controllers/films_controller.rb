@@ -90,11 +90,14 @@ class FilmsController < ApplicationController
       @filtered_films ||= tenant_films.search(params[:text_search]).phase(params[:phase], current_tenant).order(serial: :desc) 
     else
       # @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).sort_by(&:serial).reverse #It convert record to array
-      @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).order(serial: :desc)
+      if params[:phase] == Film::PHASE[1] || params[:phase] == Film::PHASE[2]
+        @filtered_films ||= tenant_films.phase(params[:phase], current_tenant)
+      else
+        @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).order(serial: :desc)
+      end
     end
 
-    # if params[:formula_like].present?
-      @filtered_films = tenant_films.phase(params[:phase], current_tenant).where('formula ILIKE ?', params[:formula_like].upcase.gsub('*', '%')).order(serial: :asc) if params[:formula_like].present?
+    @filtered_films = tenant_films.phase(params[:phase], current_tenant).where('formula ILIKE ?', params[:formula_like].upcase.gsub('*', '%')).order(serial: :asc) if params[:formula_like].present?
 
     return @filtered_films.where('serial_date BETWEEN ? AND ?', params[:serial_date_after], params[:serial_date_before]) if params[:serial_date_after].present? && params[:serial_date_before].present?
    

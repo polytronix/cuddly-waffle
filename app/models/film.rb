@@ -4,7 +4,7 @@ class Film < ActiveRecord::Base
   include Filterable
   include Tenancy
 
-  PHASE = ['recent_fg', 'large_stock', 'small_stock', 'archive_fg']
+  PHASE = ['recent_fg', 'large_stock', 'small_stock', 'archive_fg'].freeze
 
   belongs_to :master_film
   belongs_to :sales_order, optional: true
@@ -39,8 +39,8 @@ class Film < ActiveRecord::Base
   # scope :has_shelf, -> { where("shelf <> ''") }
   # scope :large, ->(cutoff) { join_dimensions do|dimension| dimension.merge(Dimension.large(cutoff))end  }
   # scope :small, ->(cutoff) { join_dimensions do|dimension| dimension.merge(Dimension.small(cutoff)) end }
-  scope :large, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length >= ?", cutoff)  }
-  scope :small, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length < ?", cutoff) }
+  scope :large, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length >= ?", cutoff).order("dimensions.width*dimensions.length").reverse }
+  scope :small, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length < ?", cutoff).order("dimensions.width*dimensions.length").reverse }
   scope :text_search, ->(query) { reorder('').search(query) }
   scope :formula_like, ->(formula) { join_master_films
                                        .merge(MasterFilm.formula_like(formula)) }
