@@ -1,6 +1,7 @@
 class FilmFormulaTotals
 
   def initialize(films)
+    byebug
     @films = films.join_master_films
   end
 

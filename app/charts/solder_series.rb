@@ -51,4 +51,3 @@ class SolderSeries
   def ordered_films
     @ordered_films ||= @films
   end
-end
