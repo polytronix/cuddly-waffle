@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.6.8'
+ruby '2.7.4'
 gem 'rails', '~> 6.0.4'
 gem 'sass-rails', '>= 5'
 #gem 'sassc'
@@ -15,8 +15,6 @@ gem 'nokogiri', '~> 1.10', '>= 1.10.8'
 
 gem 'pg', '~> 1.0'
 gem 'highcharts-rails', '~> 6.0', '>= 6.0.3'
-gem 'chartkick'
-gem 'groupdate' #another chart js
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'simple_calendar', '~> 1.1.10'
 gem 'rqrcode', '~> 0.10.1'

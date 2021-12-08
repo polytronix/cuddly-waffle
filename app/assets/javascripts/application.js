@@ -21,5 +21,3 @@
 //= require highcharts/modules/exporting
 //= require technical-indicators.src
 //= require_tree .
-//= require chartkick
-//= require Chart.bundle
