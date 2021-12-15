@@ -10,7 +10,7 @@ gem 'uglifier', '~> 4.1', '>= 4.1.17'
 gem 'responders', '~> 3.0.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 # gem 'newrelic_rpm', '~> 5.3', '>= 5.3.0.346' Error Issue Rails 6.0.4.1
-
+gem 'ransack' #search function
 gem 'nokogiri', '~> 1.10', '>= 1.10.8' 
 
 gem 'pg', '~> 1.0'
