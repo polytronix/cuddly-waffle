@@ -85,22 +85,15 @@ class FilmsController < ApplicationController
   helper_method :tenant_films
 
   def filtered_films
-    if params[:text_search].present?
-      # @filtered_films ||= tenant_films.search(params[:text_search]).phase(params[:phase], current_tenant).sort_by(&:serial).reverse #It convert record to array
-      @filtered_films ||= tenant_films.search(params[:text_search]).phase(params[:phase], current_tenant).order(serial: :desc) 
-    else
-      # @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).sort_by(&:serial).reverse #It convert record to array
-      if params[:phase] == Film::PHASE[1] || params[:phase] == Film::PHASE[2]
-        @filtered_films ||= tenant_films.phase(params[:phase], current_tenant)
-      else
-        @filtered_films ||= tenant_films.phase(params[:phase], current_tenant).order(serial: :desc)
-      end
-    end
+    @filtered_films = tenant_films.phase(params[:phase], current_tenant).order(serial: :desc)
+    @filtered_films = @filtered_films.search(params[:text_search]).phase(params[:phase], current_tenant).order(serial: :desc)  if params[:text_search].present?
+    
+    @filtered_films = @filtered_films.joins(:dimensions).where("dimensions.width >= :min_width AND dimensions.length >= :min_length", min_width: params[:width_greater_than], min_length: params[:length_greater_than]) if dimensions_searched?
+    
+    @filtered_films = @filtered_films.phase(params[:phase], current_tenant).where('formula ILIKE ?', params[:formula_like].upcase.gsub('*', '%')).order(serial: :asc) if params[:formula_like].present?
 
-    @filtered_films = tenant_films.phase(params[:phase], current_tenant).where('formula ILIKE ?', params[:formula_like].upcase.gsub('*', '%')).order(serial: :asc) if params[:formula_like].present?
+    @filtered_films = @filtered_films.where('serial_date BETWEEN ? AND ?', params[:serial_date_after], params[:serial_date_before]) if params[:serial_date_after].present? && params[:serial_date_before].present?
 
-    return @filtered_films.where('serial_date BETWEEN ? AND ?', params[:serial_date_after], params[:serial_date_before]) if params[:serial_date_after].present? && params[:serial_date_before].present?
-   
     @filtered_films
   end
   helper_method :filtered_films
