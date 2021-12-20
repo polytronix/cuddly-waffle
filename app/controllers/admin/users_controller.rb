@@ -1,6 +1,6 @@
 class Admin::UsersController < AdminController
   def index
-    @users = users.page(params[:page]).per(10)
+    @users = users.page(params[:page]).per(20) #max users on the page. 
   end
 
   def new

@@ -39,8 +39,8 @@ class Film < ActiveRecord::Base
   # scope :has_shelf, -> { where("shelf <> ''") }
   # scope :large, ->(cutoff) { join_dimensions do|dimension| dimension.merge(Dimension.large(cutoff))end  }
   # scope :small, ->(cutoff) { join_dimensions do|dimension| dimension.merge(Dimension.small(cutoff)) end }
-  scope :large, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length >= ?", cutoff)  }
-  scope :small, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length < ?", cutoff) }
+  scope :large, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length >= ?", cutoff).order("dimensions.width*dimensions.length")   }
+  scope :small, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length < ?", cutoff).order("dimensions.width*dimensions.length")  }
   scope :text_search, ->(query) { reorder('').search(query) }
   scope :formula_like, ->(formula) { join_master_films
                                        .merge(MasterFilm.formula_like(formula)) }
@@ -52,11 +52,11 @@ class Film < ActiveRecord::Base
   scope :serial_date_before, lambda {|date| join_master_films.merge(MasterFilm.serial_date_before(date)) }
   scope :serial_date_after, lambda {|date| join_master_films.merge(MasterFilm.serial_date_after(date)) }
   
-  include PgSearch::Model
-  pg_search_scope :search,
-                  against: [:serial, :note, :shelf, :phase],
-                  using: { tsearch: { prefix: true } },
-                  associated_against: { master_film: [:formula], sales_order: [:code], dimensions: [:width, :length] }
+  #include PgSearch::Model
+  #pg_search_scope :search,
+  #                against: [:serial, :note, :shelf, :phase],
+  #                using: { tsearch: { prefix: true } },
+  #                associated_against: { master_film: [:formula], sales_order: [:code], dimensions: [:width, :length] }
 
   def split
     master_film.create_film(phase, width, length)
