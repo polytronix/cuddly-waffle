@@ -33,6 +33,7 @@ class Film < ActiveRecord::Base
   scope :join_master_film, ->  { joins(:master_film) }
   scope :active, -> { where(deleted: false)
                         .join_master_films
+                        pry.binding
                         .merge(MasterFilm.function_not(:test)) }
   scope :deleted, -> { where(deleted: true) }
   scope :not_deleted, -> { where(deleted: false) }

@@ -22,7 +22,6 @@ class MasterFilm < ActiveRecord::Base
                      format: { with: /\A[A-Z]\d{4}-\d{2}\z/ }
   validates :effective_width, numericality: { greater_than_or_equal_to: 0 }
   validates :effective_length, numericality: { greater_than_or_equal_to: :effective_width }
-
   scope :active, -> { all.joins(:films).merge(Film.not_deleted).distinct }
   scope :function, ->(function) { where(function: functions[function]) }
   scope :function_not, ->(function) { where("function <> ?", MasterFilm.functions[function]) }
