@@ -34,6 +34,9 @@ class Film < ActiveRecord::Base
   scope :active, -> { where(deleted: false)
                         .join_master_films
                         .merge(MasterFilm.function_not(:test)) }
+  scope :not_tested, -> { where(deleted:false)
+                        .join_master_film
+                        .merge(MasterFilm.function_not(:test)) }
   scope :deleted, -> { where(deleted: true) }
   scope :not_deleted, -> { where(deleted: false) }
   # scope :has_shelf, -> { where("shelf <> ''") }
@@ -84,7 +87,8 @@ class Film < ActiveRecord::Base
   def self.phase(phase, tenant = nil)
     case phase
       when "lamination", "inspection", "stock", "reserved", "wip", "fg", "nc", "scrap"
-        send(phase).join_master_film.not_deleted
+      #  send(phase).join_master_film.not_deleted
+        send(phase).join_master_film.not_tested
       when "large_stock"
         active.stock.large(tenant.small_area_cutoff)
       when "small_stock"
