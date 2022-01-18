@@ -98,6 +98,8 @@ class SalesOrdersController < ApplicationController
   private
 
   def filtered_orders
+    return  sales_orders.where("ship_date < ?", Date.today - 1.year).shipped if params[:status1] == "1year" && params[:action] == "lead_time_histogram"
+
     sales_orders.status(params[:status]) #filter.(filtering_params) (Ruby 2.5.1 > 2.6.8)
   end
   helper_method :filtered_orders
