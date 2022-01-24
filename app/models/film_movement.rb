@@ -31,9 +31,9 @@ class FilmMovement < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << %w(Serial Formula Width Length Order User DateTime)
+      csv << %w(Serial Formula Movement Width Length Order User DateTime)
       all.each do |m|
-        csv << [m.serial, m.formula, m.width, m.length, m.sales_order_code, m.created_at]
+        csv << [m.serial, m.formula, m.from_phase, m.to_phase, m.width, m.length, m.sales_order_code, m.actor, m.created_at] #fixing the film movement export
       end
     end
   end

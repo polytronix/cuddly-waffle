@@ -88,7 +88,7 @@ class Film < ActiveRecord::Base
     case phase
       when "lamination", "inspection", "stock", "reserved", "wip", "fg", "nc", "scrap"
       #  send(phase).join_master_film.not_deleted
-        send(phase).join_master_film.not_tested
+        send(phase).join_master_film.not_tested #test films not in phases
       when "large_stock"
         active.stock.large(tenant.small_area_cutoff)
       when "small_stock"

@@ -98,7 +98,11 @@ class SalesOrdersController < ApplicationController
   private
 
   def filtered_orders
-    sales_orders.status(params[:status]) #filter.(filtering_params) (Ruby 2.5.1 > 2.6.8)
+    return sales_orders.where("ship_date < ?", Date.today - 1.year).shipped if params[:status1] == "1year" && params[:action] == "lead_time_histogram" #1 year old lead time histogram issue 
+    return sales_orders.where("ship_date < ?", Date.today - 1.year).shipped if params[:status1] == "1year" && params[:action] == "product_type_totals" #1 year product type totals 
+    return sales_orders.where("ship_date < ?", Date.today - 1.year).shipped if params[:status1] == "1year" && params[:action] == "assigned_formula_totals" #1 year assigned formula totals. 
+   sales_orders.status(params[:status]) #filter.(filtering_params) (Ruby 2.5.1 > 2.6.8)
+
   end
   helper_method :filtered_orders
 
