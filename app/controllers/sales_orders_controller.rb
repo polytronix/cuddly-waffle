@@ -1,6 +1,6 @@
 class SalesOrdersController < ApplicationController
   before_action :check_admin, only: [:destroy]
-  require 'csv'
+  # require 'csv'
   
   def index
     @sales_orders = filtered_orders.order_by(sort[0], sort[1]).page(params[:page])
@@ -18,7 +18,7 @@ class SalesOrdersController < ApplicationController
       format.html
       format.csv do 
         render csv: filtered_orders if params[:data] == "orders"
-        render csv: filtered_orders.line_items if params[:data] == "line_items"
+        render csv: filtered_orders.line_items if params[:data] == "line_items" 
       end
     end
   end

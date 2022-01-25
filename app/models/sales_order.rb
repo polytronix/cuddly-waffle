@@ -90,7 +90,7 @@ class SalesOrder < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
+    CSV.generate do |csv|
       csv << %w(SO# Customer Released Due Ship-to Status Shipped Note)
       all.each do |o|
         csv << [o.code, o.customer, o.release_date, o.due_date, o.ship_to, o.status, o.ship_date, o.note]
