@@ -41,6 +41,7 @@ group :development do
   gem 'pry'
   gem 'pry-byebug'
   gem 'binding_of_caller'
+  gem 'bullet'
 end
 
 gem 'honeybadger' #tracking and reporting errors triggered by application
