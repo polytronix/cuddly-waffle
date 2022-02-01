@@ -44,7 +44,7 @@ class MasterFilmsController < ApplicationController
     end
     @series = WepSeries.new(@filtered_master_films_with_wep_values)
   end
-
+ 
   def edit
     @master_film = tenant_master_films.find(params[:id])
     render layout: false
