@@ -88,9 +88,9 @@ class SalesOrder < ActiveRecord::Base
   def self.films
     Film.where(sales_order_id: all.map(&:id))
   end
-
+ 
   def self.to_csv(options = {})
-    CSV.generate do |csv|
+    CSV.generate(options) do |csv|
       csv << %w(SO# Customer Released Due Ship-to Status Shipped Note)
       all.each do |o|
         csv << [o.code, o.customer, o.release_date, o.due_date, o.ship_to, o.status, o.ship_date, o.note]

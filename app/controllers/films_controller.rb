@@ -9,7 +9,7 @@ class FilmsController < ApplicationController
       format.csv { render csv: filtered_films }
     end
   end
-
+ 
   def formula_totals
     @data = FilmFormulaTotals.new(filtered_films, params)
   end
