@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.7.4'
+ruby '3.0.2'
 gem 'rails', '~> 6.0.4'
 gem 'sass-rails', '>= 5'
 #gem 'sassc'
@@ -36,7 +36,7 @@ gem "awesome_print", require:"ap"
 
 # gem 'rack-timeout' # used to timeout puma requests
 group :development do 
-  gem 'listen', '3.1.5'
+  gem 'listen', '3.5.0'
   gem 'better_errors'
   gem 'pry'
   gem 'pry-byebug'
