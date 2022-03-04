@@ -60,7 +60,14 @@ class MasterFilmsController < ApplicationController
   private
 
   def filtered_master_films
-    @filtered_master_films ||= tenant_master_films.function(params[:function]).active
+    # @filtered_master_films ||= tenant_master_films.function(params[:function]).active
+    @filtered_master_films ||= tenant_master_films.active.function(params[:function])
+    @filtered_master_films = tenant_master_films.search(params[:text_search])  if params[:text_search].present?
+    @filtered_master_films = @filtered_master_films.where('formula ILIKE ?', params[:formula_like].upcase.gsub('*', '%')).order(serial: :asc) if params[:formula_like].present?
+
+    @filtered_master_films = @filtered_master_films.where('serial_date BETWEEN ? AND ?', params[:serial_date_after], params[:serial_date_before]) if params[:serial_date_after].present? && params[:serial_date_before].present?
+
+    @filtered_master_films
   end
   helper_method :filtered_master_films
 

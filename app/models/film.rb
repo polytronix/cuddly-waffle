@@ -61,6 +61,12 @@ class Film < ActiveRecord::Base
   #                using: { tsearch: { prefix: true } },
   #                associated_against: { master_film: [:formula], sales_order: [:code], dimensions: [:width, :length] }
 
+ include PgSearch::Model
+  pg_search_scope :search,
+                  against: [:serial, :note, :shelf, :phase],
+                  using: { tsearch: { prefix: true } },
+                  associated_against: { master_film: [:formula], sales_order: [:code] }
+                  
   def split
     master_film.create_film(phase, width, length)
   end
