@@ -24,7 +24,7 @@ class MasterFilm < ActiveRecord::Base
   validates :effective_length, numericality: { greater_than_or_equal_to: :effective_width }
 
   scope :active, -> { all.joins(:films).merge(Film.not_deleted).distinct }
-  scope :function, ->(function) { where(function: functions[function]) }
+  scope :function, ->(function) { where(function: MasterFilm.functions[function]) }
   scope :function_not, ->(function) { where("function <> ?", MasterFilm.functions[function]) }
   scope :serial_date_before, ->(date) { where('master_films.serial_date <= ?', date) }
   scope :serial_date_after, ->(date) { where('master_films.serial_date >= ?', date) }
@@ -32,8 +32,7 @@ class MasterFilm < ActiveRecord::Base
   # scope :formula_like, ->(formula) { where('formula ILIKE ?', formula.gsub('*', '%')) } #=> "N* or *E"
   scope :formula_like, ->(formula) { where('formula LIKE ?', formula.gsub('*', '%')) }
   scope :text_search, ->(query) { reorder('').search(query) }
-  
- 
+
   include PgSearch::Model
   pg_search_scope :search, 
     against: [:serial, :formula, :film_code_top, :thinky_code, :operator, :chemist, :inspector, :defects, :note],

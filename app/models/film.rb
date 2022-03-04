@@ -55,11 +55,11 @@ class Film < ActiveRecord::Base
   scope :serial_date_before, lambda {|date| join_master_films.merge(MasterFilm.serial_date_before(date)) }
   scope :serial_date_after, lambda {|date| join_master_films.merge(MasterFilm.serial_date_after(date)) }
   
-  # include PgSearch::Model
-  # pg_search_scope :search,
-  #                 against: [:serial, :note, :shelf, :phase],
-  #                 using: { tsearch: { prefix: true } },
-  #                 associated_against: { master_film: [:formula], sales_order: [:code], dimensions: [:width, :length] }
+  include PgSearch::Model
+  pg_search_scope :search,
+                  against: [:serial, :note, :shelf, :phase],
+                  using: { tsearch: { prefix: true } },
+                  associated_against: { master_film: [:formula], sales_order: [:code] }
 
   def split
     master_film.create_film(phase, width, length)
