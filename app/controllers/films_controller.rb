@@ -96,7 +96,8 @@ class FilmsController < ApplicationController
     #    @filtered_films ||= tenant_films.phase(params[:phase], current_tenant)
     #  end
     #end
-    @filtered_films = tenant_films.phase(params[:phase], current_tenant)&.order(serial: :desc)
+    @filtered_films = tenant_films.phase(params[:phase], current_tenant)&.order(serial: :desc) #film download Film Tab
+    #@filtered_films = tenant_films.phase(params[:phase], current_tenant).order(serial: :desc)
     @filtered_films = @filtered_films.search(params[:text_search]).phase(params[:phase], current_tenant).order(serial: :desc)  if params[:text_search].present?
     @filtered_films = @filtered_films.joins(:dimensions).where("dimensions.width >= :min_width AND dimensions.length >= :min_length", min_width: params[:width_greater_than], min_length: params[:length_greater_than]) if dimensions_searched?
     @filtered_films = @filtered_films.phase(params[:phase], current_tenant).where('formula ILIKE ?', params[:formula_like].upcase.gsub('*', '%')).order(serial: :asc) if params[:formula_like].present?
