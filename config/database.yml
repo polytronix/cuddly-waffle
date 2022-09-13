@@ -53,3 +53,13 @@ production:
   pool: 5
   username: snowflake
   password:
+
+
+  default: &default
+  adapter: postgresql
+  pool: 5
+  # port: 
+  timeout: 5000
+  encoding: utf8
+  # min_messages: warning
+  socket: /tmp/.s.PGSQL.5432
