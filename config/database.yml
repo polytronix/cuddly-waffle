@@ -42,6 +42,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: pcms_devel
+  host: localhost
   pool: 5
   username: snowflake
   password:
