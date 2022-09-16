@@ -16,7 +16,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: pcms_devel
-  host: localhost
+  host: '/var/run/postgres'
   pool: 5
   username: snowflake
   password:
@@ -43,7 +43,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: pcms_devel
-  host: localhost
+  host: '/var/run/postgres'
   pool: 5
   username: snowflake
   password:
@@ -52,7 +52,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: pcms_test
-  host: localhost
+  host: '/var/run/postgres'
   pool: 5
   username: snowflake
   password:
