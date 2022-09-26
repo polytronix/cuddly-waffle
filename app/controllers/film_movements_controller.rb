@@ -3,6 +3,15 @@ class FilmMovementsController < ApplicationController
 
   def index
     @film_movements = film_movements.sort_by_created_at.page(params[:page])
+
+    @film_movements = @film_movements.to_phase(filtering_params[:to_phase]) if filtering_params[:to_phase].present?
+    @film_movements = @film_movements.from_phase(filtering_params[:from_phase]) if filtering_params[:from_phase].present?
+    @film_movements = @film_movements.search(filtering_params[:text_search]) if filtering_params[:text_search].present?
+    @film_movements = @film_movements.created_at_before(filtering_params[:created_at_before]) if filtering_params[:created_at_before].present?
+    @film_movements = @film_movements.created_at_after(filtering_params[:created_at_after]) if filtering_params[:created_at_after].present?
+
+    @film_movements
+
     respond_to do |format|
       format.html
       format.csv { render csv: film_movements }

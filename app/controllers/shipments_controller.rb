@@ -20,7 +20,11 @@ class ShipmentsController < ApplicationController
   end
 
   def filtered_shipped_orders
-    current_tenant.sales_orders.shipped #.filter(filtering_params) (Ruby 2.5 to 2.6)
+    shipped_orders = current_tenant.sales_orders.shipped #.filter(filtering_params) (Ruby 2.5 to 2.6)
+    shipped_orders = shipped_orders.ship_date_before(filtering_params[:ship_date_before]) if filtering_params[:ship_date_before].present?
+    shipped_orders = shipped_orders.ship_date_after(filtering_params[:ship_date_after]) if filtering_params[:ship_date_after].present?
+
+    shipped_orders
   end
 
   def set_default_start_date
