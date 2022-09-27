@@ -40,7 +40,7 @@ module ApplicationHelper
   def link_to_export(text, params)
     if current_user.admin?
       # link_to url_for(request.params.merge(format: "csv")), class: "btn btn-default" do - fixing the order csv
-      link_to url_for(params.merge(format: "csv").permit(:status, :controller, :action, :data, :format, :function)), class: "btn btn-default" do
+      link_to url_for(params.merge(format: "csv").permit(:status, :controller, :action, :data, :format, :function, :phase)), class: "btn btn-default" do
         content_tag(:i, nil, class: "fa fa-download") + " " + text
       end
     end
