@@ -3,7 +3,7 @@ class FilmsController < ApplicationController
 
   def index
     puts"in index"
-    @films  = Kaminari.paginate_array(filtered_films).page(params[:page]).per(10)
+    @films  = Kaminari.paginate_array(filtered_films.uniq).page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.csv { render csv: filtered_films }
