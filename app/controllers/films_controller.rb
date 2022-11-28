@@ -107,7 +107,7 @@ class FilmsController < ApplicationController
 
     # return @filtered_films.where('serial_date BETWEEN ? AND ?', params[:serial_date_after], params[:serial_date_before]) if params[:serial_date_after].present? && params[:serial_date_before].present?
    
-    @filtered_films
+    @filtered_films.uniq # fixed count by film not by film size
   end
   helper_method :filtered_films
 
