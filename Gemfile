@@ -50,7 +50,7 @@ gem 'honeybadger' #tracking and reporting errors triggered by application
 group :production do
   # gem 'rails_12factor'
   gem 'rack-timeout', '~> 0.5.1'
-  gem 'rails_12factor', '~> 0.0.3'
+  # gem 'rails_12factor', '~> 0.0.3'
 end
 
 # gem 'simplecov', require: false, group: :test
