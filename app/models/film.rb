@@ -28,7 +28,7 @@ class Film < ActiveRecord::Base
   validates :order_fill_count, numericality: { greater_than: 0 }
   validate :must_have_dimensions, on: :update
 
-  scope :join_dimensions, -> { joins('LEFT OUTER JOIN dimensions ON dimensions.film_id = films.id').uniq }
+  scope :join_dimensions, -> { joins('LEFT OUTER JOIN dimensions ON dimensions.film_id = films.id') }
   scope :join_master_films, ->  { joins('INNER JOIN master_films ON master_films.id = films.master_film_id') }
   scope :join_master_film, ->  { joins(:master_film) }
   scope :active, -> { where(deleted: false)

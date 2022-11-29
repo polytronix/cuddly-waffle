@@ -28,9 +28,11 @@
 <% content_for :summary do %>
   <dl class="dl-horizontal pull-right">
     <dt>Pieces</dt>
-    <dd><%= filtered_films.count %></dd>
+    <dd><%= filtered_films.count("DISTINCT films.id") %></dd> 
+    <%# <dd><%= filtered_films.count %>
     <dt>Area</dt>
-    <dd><%= filtered_films.sum(&:area).to_f.round(2) %></dd>
+    <dd><%= filtered_films.uniq.sum(&:area).to_f.round(2) %></dd>
+    <%# <dd><%= filtered_films.sum(&:area).to_f.round(2) %>
   </dl>
 <% end %>
 
