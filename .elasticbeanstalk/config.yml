@@ -1,0 +1,18 @@
+branch-defaults:
+  aws:
+    environment: null
+    group_suffix: null
+global:
+  application_name: PCMS-AWS
+  branch: aws
+  default_ec2_keyname: aws-eb
+  default_platform: Ruby 2.7 running on 64bit Amazon Linux 2
+  default_region: us-east-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: pcms-code
+  sc: git
+  workspace_type: Application
