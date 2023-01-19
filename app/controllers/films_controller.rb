@@ -1,6 +1,8 @@
 class FilmsController < ApplicationController
   require 'rqrcode'
 
+scope :by_serial, -> { order('film_ids DESC') }
+
   def index
     puts"in index"
     @films  = Kaminari.paginate_array(filtered_films.uniq).page(params[:page]).per(10)# .sort_by(&:id).reverse #.order(serial: :desc)
