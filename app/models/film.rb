@@ -3,6 +3,7 @@ class Film < ActiveRecord::Base
   require 'rqrcode'
   include Filterable
   include Tenancy
+  include OrderableById
 
   PHASE = ['recent_fg', 'large_stock', 'small_stock', 'archive_fg']
 
@@ -47,9 +48,9 @@ class Film < ActiveRecord::Base
   scope :text_search, ->(query) { reorder('').search(query) }
   scope :formula_like, ->(formula) { join_master_films
                                        .merge(MasterFilm.formula_like(formula)) }
-  scope :order_by, ->(col, dir) { order("#{col} #{dir}") }
+  # scope :order_by, ->(col, dir) { order("#{col} #{dir}") }
 
-
+ 
   scope :width_greater_than, ->(n) { join_dimensions.merge(Dimension.min_width(n)) }
   scope :length_greater_than, ->(n) { join_dimensions.merge(Dimension.min_length(n)) }
   scope :serial_date_before, lambda {|date| join_master_films.merge(MasterFilm.serial_date_before(date)) }
