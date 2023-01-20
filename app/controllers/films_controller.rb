@@ -2,7 +2,7 @@ class FilmsController < ApplicationController
   require 'rqrcode'
 
 # scope :by_serial, -> { order('films.id DESC') }
-default_scope { order(film_ids: :desc) }
+
 
   def index
     puts"in index"
@@ -10,6 +10,7 @@ default_scope { order(film_ids: :desc) }
     respond_to do |format|
       format.html
       format.csv { render csv: filtered_films }
+      default_scope { order(film_ids: :desc) }
     end
   end
  
