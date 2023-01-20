@@ -1,7 +1,8 @@
 class FilmsController < ApplicationController
   require 'rqrcode'
 
-scope :by_serial, -> { order('films.id DESC') }
+# scope :by_serial, -> { order('films.id DESC') }
+default_scope { order(film_ids: :desc) }
 
   def index
     puts"in index"
