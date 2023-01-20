@@ -2,15 +2,14 @@ class FilmsController < ApplicationController
   require 'rqrcode'
 
 # scope :by_serial, -> { order('films.id DESC') }
-
+# default_scope { order(film_ids: :desc) }
 
   def index
     puts"in index"
-    @films  = Kaminari.paginate_array(filtered_films.uniq).page(params[:page]).per(10)# .sort_by(&:id).reverse #.order(serial: :desc)
+    @films  = Kaminari.paginate_array(filtered_films.uniq).page(params[:page]).per(20)# .sort_by(&:id).reverse #.order(serial: :desc)
     respond_to do |format|
       format.html
       format.csv { render csv: filtered_films }
-      default_scope { order(film_ids: :desc) }
     end
   end
  
@@ -84,7 +83,7 @@ class FilmsController < ApplicationController
   private
 
   def tenant_films
-    @tenant_films ||= current_tenant.films
+    @tenant_films ||= current_tenant.films.order(serial: :desc)
   end
   helper_method :tenant_films
 
