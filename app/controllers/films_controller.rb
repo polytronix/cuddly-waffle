@@ -83,7 +83,7 @@ class FilmsController < ApplicationController
   private
 
   def tenant_films
-    @tenant_films ||= current_tenant.films.order(serial: :desc)
+    @tenant_films ||= current_tenant.films.order(id: :desc)
   end
   helper_method :tenant_films
 
