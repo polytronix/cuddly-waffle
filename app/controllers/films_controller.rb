@@ -6,7 +6,7 @@ class FilmsController < ApplicationController
 
   def index
     puts"in index"
-    @films  = Kaminari.paginate_array(filtered_films.uniq).by_recently_id.page(params[:page]).per(20) #&.order(serial: :desc)# .sort_by(&:id).reverse #.order(serial: :desc)
+    @films  = Kaminari.paginate_array(filtered_films.uniq).page(params[:page]).per(20) #&.order(serial: :desc)# .sort_by(&:id).reverse #.order(serial: :desc)
     respond_to do |format|
       format.html
       format.csv { render csv: filtered_films }
@@ -83,7 +83,7 @@ class FilmsController < ApplicationController
   private
 
   def tenant_films
-    @tenant_films ||= current_tenant.films #.order(id: :desc)
+    @tenant_films ||= current_tenant&.films&.order(id: :desc)
   end
   helper_method :tenant_films
 
