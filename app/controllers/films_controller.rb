@@ -112,7 +112,7 @@ class FilmsController < ApplicationController
    
    #  @filtered_films.uniq # fixed count by film not by film size
   #  @filtered_films
-    @filtered_films.sort_by(&:serial_date).reverse
+     @filtered_films.sort_by(&:serial_date).reverse
   end
   helper_method :filtered_films
 
