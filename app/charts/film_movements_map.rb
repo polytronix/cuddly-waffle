@@ -17,7 +17,8 @@ class FilmMovementsMap
   private
 
   def movements_grouped_by_phase_change
-    @movements.group_by { |m| [m.from_phase, m.to_phase] }
+    @movements.find_each.group_by { |m| [m.from_phase, m.to_phase] }
+ #   @movements.group_by { |m| [m.from_phase, m.to_phase] } graph no longer was loading
   end
 
   def sum_areas(movements)
