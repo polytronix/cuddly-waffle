@@ -1,5 +1,12 @@
 <script>
   $(function () {
+    Highcharts.wrap(Highcharts.Axis.prototype, 'getPlotLinePath', function(proceed) {
+      var path = proceed.apply(this, Array.prototype.slice.call(arguments, 1));
+      if (path) {
+          path.flat = false;
+      }
+      return path;
+    });
     $('#yield_time_series').highcharts({
       chart: {
         type: 'spline'
