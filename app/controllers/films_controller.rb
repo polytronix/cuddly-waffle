@@ -80,7 +80,7 @@ class FilmsController < ApplicationController
   private
 
   def tenant_films
-    @tenant_films ||= current_tenant.films
+    @tenant_films ||= current_tenant.films.order(serial_date: :desc)
   end
   helper_method :tenant_films
 
@@ -108,8 +108,8 @@ class FilmsController < ApplicationController
     # return @filtered_films.where('serial_date BETWEEN ? AND ?', params[:serial_date_after], params[:serial_date_before]) if params[:serial_date_after].present? && params[:serial_date_before].present?
    
    #  @filtered_films.uniq # fixed count by film not by film size
-  #  @filtered_films
-     @filtered_films.sort_by(&:serial_date).reverse
+    @filtered_films
+     #@filtered_films.sort_by(&:serial_date).reverse
   end
   helper_method :filtered_films
 
