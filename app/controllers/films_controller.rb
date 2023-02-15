@@ -28,7 +28,7 @@ class FilmsController < ApplicationController
 
   def edit
     session[:return_to] ||= request.referer
-    @film = current_tenant_films.find(params[:id])
+    @film = current_tenant.films.find(params[:id])
     render layout: false
   end
 
