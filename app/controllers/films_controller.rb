@@ -28,19 +28,19 @@ class FilmsController < ApplicationController
 
   def edit
     session[:return_to] ||= request.referer
-    @film = tenant_films.find(params[:id])
+    @film = current_tenant.films.find(params[:id])
     render layout: false
   end
 
   def update
-    @film = tenant_films.find(params[:id])
+    @film = current_tenant.films.find(params[:id])
     unless @film.update_and_move(film_params, params[:destination], current_user)
       render :display_modal_error_messages, locals: { object: @film }
     end
   end 
 
   def edit_multiple
-    @films = tenant_films.find(params[:film_ids])
+    @films = current_tenant.films.find(params[:film_ids])
     if params[:edit]
       render :edit_multiple, layout: false
     elsif params[:qrcodes]
@@ -49,25 +49,25 @@ class FilmsController < ApplicationController
   end
 
   def update_multiple
-    @films = tenant_films.find(params[:film_ids])
+    @films = current_tenant.films.find(params[:film_ids])
     @films.each do |film|
       film.update_and_move(update_multiple_films_params, params[:destination], current_user)
     end
   end
 
   def split
-    @film = tenant_films.find(params[:id])
+    @film = current_tenant.films.find(params[:id])
     @split = @film.split
   end
 
   def destroy
-    @film = tenant_films.find(params[:id])
+    @film = current_tenant.films.find(params[:id])
     @film.update_attributes(deleted: true)
     redirect_to session.delete(:return_to), notice: "Film #{@film.serial} deleted."
   end
 
   def restore
-    @film = tenant_films.find(params[:id])
+    @film = current_tenant.films.find(params[:id])
     @film.update_attributes(deleted: false)
   end
   def delete_data
