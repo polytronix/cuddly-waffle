@@ -70,7 +70,7 @@ class FilmsController < ApplicationController
     @film = current_tenant.films.find(params[:id])
     @film.update_attributes(deleted: false)
   end
-  def delete_data
+  def delete_data #db48264a
     @film = Film.find_by_id(params[:id])
     @film.destroy
     redirect_to root_path
