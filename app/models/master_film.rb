@@ -7,7 +7,7 @@ class MasterFilm < ActiveRecord::Base
   enum function: [ :production, :test, :transfer ]
 
   has_many :films, dependent: :destroy
-  belongs_to :machine
+  belongs_to :machine, optional: true
 
   before_validation :upcase_attributes, :set_serial_date
   before_save :set_yield
