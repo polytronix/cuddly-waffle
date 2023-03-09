@@ -138,7 +138,7 @@ class Film < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
+    CSV.generate(**options) do |csv|
       csv << %w(Serial Formula Width Length Area Shelf SO Phase)
       all.join_dimensions.each do |f|
         csv << [f.serial, f.formula, f.width, f.length, f.area, f.shelf, f.sales_order_code, f.phase]
