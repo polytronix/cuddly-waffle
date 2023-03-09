@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.7.7'
+ruby '3.0.0'
 gem 'rails', '~> 6.0.4'
 gem 'sass-rails', '>= 5'
 # gem 'sassc'
@@ -40,7 +40,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
-  gem 'listen', '3.1.5'
+  gem 'listen'
   gem 'pry'
   gem 'pry-byebug'
 end
