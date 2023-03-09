@@ -28,7 +28,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
+    CSV.generate(**options) do |csv|
       csv << %w(SO# Type Custom-W Custom-L Pieces Wires Busbars Note)
       all.each do |o|
         csv << [o.sales_order_code, o.product_type, o.custom_width, o.custom_length, o.quantity, o.wire_length, o.busbar_type, o.note]
