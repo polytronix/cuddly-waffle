@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ruby '3.0.0'
-gem 'rails', '~> 6.0.4'
+gem 'rails', '~> 6.0.6'
 gem 'sass-rails', '>= 5'
 # gem 'sassc'
 
