@@ -9,7 +9,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-rails'
 gem 'nokogiri', '~> 1.10', '>= 1.10.8' 
-gem 'ransack' #search function
+gem 'ransack', '~> 2.4.0'#search function
 gem 'responders', '~> 3.0.0'
 gem 'uglifier', '~> 4.1', '>= 4.1.17'
 # gem 'newrelic_rpm', '~> 5.3', '>= 5.3.0.346' Error Issue Rails 6.0.4.1
@@ -43,6 +43,7 @@ group :development do
   gem 'listen'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'router-visualizer'
 end
 
 gem 'honeybadger' #tracking and reporting errors triggered by application

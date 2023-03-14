@@ -42,8 +42,8 @@ class Film < ActiveRecord::Base
   # scope :has_shelf, -> { where("shelf <> ''") }
   # scope :large, ->(cutoff) { join_dimensions do|dimension| dimension.merge(Dimension.large(cutoff))end  }
   # scope :small, ->(cutoff) { join_dimensions do|dimension| dimension.merge(Dimension.small(cutoff)) end }
-  scope :large, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length >= ?", cutoff).order("dimensions.width*dimensions.length")   }
-  scope :small, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length < ?", cutoff).order("dimensions.width*dimensions.length")  }
+  scope :large, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length >= ?", cutoff).order("area") } #"dimensions.width*dimensions.length")   }
+  scope :small, ->(cutoff) { joins(:dimensions).where("dimensions.width*dimensions.length < ?", cutoff).order("area")  } #"dimensions.width*dimensions.length")  }
   scope :text_search, ->(query) { reorder('').search(query) }
   scope :formula_like, ->(formula) { join_master_films
                                        .merge(MasterFilm.formula_like(formula)) }
