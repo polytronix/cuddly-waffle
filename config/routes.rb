@@ -103,6 +103,6 @@ Pcms::Application.routes.draw do
 
   root to: 'films#index', phase: "lamination"
   # ...
-  visualize
+  # visualize
   # ...
 end
