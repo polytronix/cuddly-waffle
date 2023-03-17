@@ -56,7 +56,7 @@ class SalesOrdersController < ApplicationController
 
   def update
     @sales_order = sales_orders.find(params[:id])
-    unless @sales_order.update_attributes(order_params)
+    unless @sales_order.update(order_params) # update_attributes (rails 6.1)
       render :display_modal_error_messages, locals: { object: @sales_order }
     end
   end
@@ -87,7 +87,7 @@ class SalesOrdersController < ApplicationController
 
   def update_ship_date
     @sales_order = sales_orders.find(params[:id])
-    if @sales_order.update_attributes(order_params)
+    if @sales_order.update(order_params) #update_attributes (Rails 6.1)
       @sales_order.shipped!
     else
       render :display_modal_error_messages, locals: { object: @sales_order }

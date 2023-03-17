@@ -62,13 +62,13 @@ class FilmsController < ApplicationController
 
   def destroy
     @film = current_tenant.films.find(params[:id])
-    @film.update_attributes(deleted: true)
+    @film.update(deleted: true) #update_attributes (Rails 6.1)
     redirect_to session.delete(:return_to), notice: "Film #{@film.serial} deleted."
   end
 
   def restore
     @film = current_tenant.films.find(params[:id])
-    @film.update_attributes(deleted: false)
+    @film.update(deleted: false) #update_attributes (Rails 6.1)
   end
   def delete_data #db48264a
     @film = Film.find_by_id(params[:id])

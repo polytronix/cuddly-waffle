@@ -52,7 +52,7 @@ class MasterFilmsController < ApplicationController
 
   def update
     @master_film = tenant_master_films.find(params[:id]) 
-    unless @master_film.update_attributes(master_film_params)
+    unless @master_film.update(master_film_params) #update_attributes (Rails 6.1)
       render :display_modal_error_messages, locals: { object: @master_film }
     end
   end 
