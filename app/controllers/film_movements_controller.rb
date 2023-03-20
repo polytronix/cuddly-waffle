@@ -43,6 +43,6 @@ class FilmMovementsController < ApplicationController
   end
 
   def set_default_start_date
-    params[:created_at_after] ||= Date.current
+    params[:created_at_after] ||= Date.today #Date.current (2013-03-20)
   end
 end
