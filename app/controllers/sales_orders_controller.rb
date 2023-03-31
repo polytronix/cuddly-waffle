@@ -102,7 +102,9 @@ class SalesOrdersController < ApplicationController
     return sales_orders.where("ship_date < ?", Date.today - 1.year).shipped if params[:status1] == "1year" && params[:action] == "product_type_totals" #1 year product type totals 
     return sales_orders.where("ship_date < ?", Date.today - 1.year).shipped if params[:status1] == "1year" && params[:action] == "assigned_formula_totals" #1 year assigned formula totals. 
     orders = sales_orders.status(params[:status]) #filter.(filtering_params) (Ruby 2.5.1 > 2.6.8)
-    orders = orders.search(filtering_params[:text_search]) if filtering_params[:text_search].present?
+
+    orders = orders.search(filtering_params[:text_search]) if filtering_params[:text_search].present? 
+    orders = orders.search(filtering_params[:code_like]) if filtering_params[:code_like].present?
 
     orders
   end
