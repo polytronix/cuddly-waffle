@@ -80,7 +80,11 @@ class FilmsController < ApplicationController
   private
 
   def tenant_films
-    @tenant_films ||= current_tenant.films.order(serial_date: :desc)
+    if params[:phase] == 'deleted'
+      @tenant_films ||= current_tenant.films
+    else
+      @tenant_films ||= current_tenant.films.order(serial_date: :desc)
+    end
   end
   helper_method :tenant_films
 
