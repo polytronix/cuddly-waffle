@@ -11,7 +11,7 @@ class MasterFilm < ActiveRecord::Base
 
   before_validation :upcase_attributes, :set_serial_date
   before_save :set_yield
-  after_update :update_film_serials, if: Proc.new { |mf| mf.serial_changed? }
+  after_update :update_film_serials, if: -> { !saved_change_to_serial.nil? }
 
   delegate :code, to: :machine, prefix: true, allow_nil: true
   alias_attribute :width, :effective_width
